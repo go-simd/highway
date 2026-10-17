@@ -20,3 +20,7 @@ require (
 	modernc.org/strutil v1.2.1 // indirect
 	modernc.org/token v1.1.0 // indirect
 )
+
+// v0.0.1 is upstream's hwy/goat/v0.0.1, inherited by the fork: its go.mod
+// declares github.com/ajroetker/go-highway/hwy/goat, not this path.
+retract v0.0.1
