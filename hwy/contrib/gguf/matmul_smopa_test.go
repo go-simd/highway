@@ -22,8 +22,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // makeTestMatMulData creates consistent weight and input data for matmul tests.

@@ -1,0 +1,23 @@
+github.com/go-simd/highway
+
+This is a fork of go-highway, https://github.com/ajroetker/go-highway,
+Copyright the go-highway authors (AJ Roetker and contributors), licensed under
+the Apache License, Version 2.0 (see LICENSE). The fork is distributed under
+the same licence.
+
+Changes made in this fork (Apache License 2.0, section 4(b)):
+
+  2026-10-17  Every file naming the module path was modified: the module path
+              github.com/ajroetker/go-highway became github.com/go-simd/highway
+              (903 go.mod, .go and .md files). Paths recording where generated
+              assembly came from, and benchmark records, were left unchanged.
+
+  2026-10-17  go.mod: the hwy/goat tool is required at a published version
+              instead of v0.0.0, which exists nowhere and made
+              `go list -m all`, `go mod download all` and gorelease fail for
+              every downstream module (ajroetker/go-highway#73; the same change
+              upstream is ajroetker/go-highway#74).
+
+The fork exists only so that downstream modules can resolve their module graph
+while those upstream changes are pending. It will follow upstream, and end once
+upstream releases the fix.

@@ -16,7 +16,7 @@ package matvec
 
 //go:generate go run ../../../cmd/hwygen -input symv_base.go -dispatch symv -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseSymvLN computes y = A * x where A is symmetric.
 //

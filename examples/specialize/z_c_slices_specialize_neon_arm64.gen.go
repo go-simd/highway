@@ -7,8 +7,8 @@ package specialize
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/examples/specialize/asm"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/examples/specialize/asm"
+	"github.com/go-simd/highway/hwy"
 )
 
 func mulAddAsmF16(x, y, out []hwy.Float16) {

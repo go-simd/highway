@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 // BenchmarkTransposePrefill benchmarks transpose for prefill-like shapes

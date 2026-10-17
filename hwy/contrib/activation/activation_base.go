@@ -17,8 +17,8 @@ package activation
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 //go:generate go run ../../../cmd/hwygen -input activation_base.go -output . -targets avx2,avx512,neon:asm,fallback

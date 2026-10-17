@@ -20,9 +20,9 @@ import (
 	"errors"
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul"
-	"github.com/ajroetker/go-highway/hwy/contrib/vec"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul"
+	"github.com/go-simd/highway/hwy/contrib/vec"
 )
 
 var (

@@ -20,7 +20,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 func TestBasePrefixSum(t *testing.T) {

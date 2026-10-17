@@ -19,7 +19,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Helper to check if slice is sorted

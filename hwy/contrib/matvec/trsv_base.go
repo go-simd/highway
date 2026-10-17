@@ -16,7 +16,7 @@ package matvec
 
 //go:generate go run ../../../cmd/hwygen -input trsv_base.go -dispatch trsv -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseTrsvLN solves L * x = b for x, overwriting b with the solution.
 // L is n×n lower triangular (row-major), b is a vector of length n.

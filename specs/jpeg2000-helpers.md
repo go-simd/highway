@@ -222,7 +222,7 @@ func Analyze2D_97[T hwy.Floats](img *image.Image[T], levels int, phaseFn func(le
 
 ### go.mod change
 
-Add `require github.com/ajroetker/go-highway` dependency. Update `go` directive from 1.25 to 1.26 (matching go-highway).
+Add `require github.com/go-simd/highway` dependency. Update `go` directive from 1.25 to 1.26 (matching go-highway).
 
 ### Adapter helpers (new file: `simd.go`)
 

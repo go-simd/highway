@@ -19,7 +19,7 @@ package gguf
 import (
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // QuantType identifies a GGUF quantization format for dispatch.

@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_klast_base.go -dispatch matmul_klast -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseMatMulKLast computes C = A * B^T where:
 //   - A is M x K (row-major, K last)

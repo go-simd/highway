@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_int8x8_peraxis.go -dispatch int8x8matmulperaxis -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseInt8x8MatMulPerAxis performs integer matrix multiplication of two uint8 matrices
 // with per-axis zero-point subtraction, accumulating into int32.

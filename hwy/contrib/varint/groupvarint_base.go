@@ -16,7 +16,7 @@ package varint
 
 //go:generate go run ../../../cmd/hwygen -input groupvarint_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch groupvarint
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // Group Varint encoding is a SIMD-friendly alternative to standard LEB128 varint encoding.
 // It encodes 4 values with a single control byte, providing ~4x throughput compared to

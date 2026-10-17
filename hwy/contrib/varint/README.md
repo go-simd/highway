@@ -9,7 +9,7 @@ This package provides SIMD-accelerated encoding and decoding of variable-length 
 Stream-VByte separates control bytes from data bytes for better SIMD efficiency. Each control byte describes 4 values, with 2 bits per value indicating byte length (1-4 bytes).
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/varint"
+import "github.com/go-simd/highway/hwy/contrib/varint"
 
 // Streaming encoder
 enc := varint.NewStreamVByteEncoder()

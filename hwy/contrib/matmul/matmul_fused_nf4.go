@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_fused_nf4.go -dispatch matmul_fused_n4 -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // nf4LookupTable contains the 16 fixed values for 4-bit NormalFloat quantization.
 // These values are from the QLoRA paper and represent optimal quantization

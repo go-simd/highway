@@ -21,7 +21,7 @@ package asm
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // AVX2 with F16C and FMA for f16/bf16 support

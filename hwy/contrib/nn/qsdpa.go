@@ -17,7 +17,7 @@ package nn
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul"
+	"github.com/go-simd/highway/hwy/contrib/matmul"
 )
 
 // QuantizedSDPA computes single-head scaled dot-product attention using

@@ -19,7 +19,7 @@ package vec
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseEncodeFloat32s encodes float32 values to little-endian bytes using SIMD.

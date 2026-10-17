@@ -20,7 +20,7 @@ import (
 	"math"
 	"math/bits"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseBitProduct computes the weighted bit product used in RaBitQ distance estimation.

@@ -7,7 +7,7 @@ package gguf
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/gguf/asm"
+	"github.com/go-simd/highway/hwy/contrib/gguf/asm"
 )
 
 func vecDotQ2_KQ8_KAsmF32(wdata, adata []uint8, nblocks int) float32 {

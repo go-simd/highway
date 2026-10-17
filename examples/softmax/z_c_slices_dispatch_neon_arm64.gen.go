@@ -7,8 +7,8 @@ package softmax
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/examples/softmax/asm"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/examples/softmax/asm"
+	"github.com/go-simd/highway/hwy"
 )
 
 func softmaxAsmF16(input, output []hwy.Float16) {

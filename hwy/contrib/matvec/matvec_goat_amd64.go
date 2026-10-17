@@ -17,8 +17,8 @@
 package matvec
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matvec/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matvec/asm"
 )
 
 // Override F16/BF16 dispatch to use GoAT-generated AVX assembly.

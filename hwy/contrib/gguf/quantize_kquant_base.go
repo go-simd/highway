@@ -19,7 +19,7 @@ package gguf
 import (
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseQuantizeQ8_K quantizes float32 values to Q8_K blocks.

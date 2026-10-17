@@ -7,8 +7,8 @@ package nn
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/nn/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/nn/asm"
 )
 
 func layerNormAsmF16(input, output []hwy.Float16, normSize int, gamma, beta []hwy.Float16, epsilon hwy.Float16) {

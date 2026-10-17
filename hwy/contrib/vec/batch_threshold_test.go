@@ -21,8 +21,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matvec"
-	"github.com/ajroetker/go-highway/hwy/contrib/vec/asm"
+	"github.com/go-simd/highway/hwy/contrib/matvec"
+	"github.com/go-simd/highway/hwy/contrib/vec/asm"
 )
 
 // Benchmark to find optimal thresholds for batch operations.

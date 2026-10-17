@@ -21,7 +21,7 @@ import (
 
 	"golang.org/x/sys/cpu"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 func main() {

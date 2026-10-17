@@ -1,4 +1,4 @@
-module github.com/ajroetker/go-highway
+module github.com/go-simd/highway
 
 go 1.26
 
@@ -9,7 +9,7 @@ require (
 )
 
 require (
-	github.com/ajroetker/go-highway/hwy/goat v0.0.0 // indirect
+	github.com/go-simd/highway/hwy/goat v0.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -30,6 +30,6 @@ require (
 	modernc.org/token v1.1.0 // indirect
 )
 
-replace github.com/ajroetker/go-highway/hwy/goat => ./hwy/goat
+replace github.com/go-simd/highway/hwy/goat => ./hwy/goat
 
-tool github.com/ajroetker/go-highway/hwy/goat
+tool github.com/go-simd/highway/hwy/goat

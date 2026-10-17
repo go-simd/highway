@@ -7,7 +7,7 @@ package vec
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/vec/asm"
+	"github.com/go-simd/highway/hwy/contrib/vec/asm"
 )
 
 func decodeFloat32sAsmF32(dst []float32, src []byte) {

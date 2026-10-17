@@ -22,8 +22,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // testRNGSME returns a seeded random number generator for reproducible tests.

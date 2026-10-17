@@ -138,7 +138,7 @@ func repoRoot(t *testing.T) string {
 	return filepath.Dir(gomod)
 }
 
-// modulePath returns the module path (e.g. "github.com/ajroetker/go-highway")
+// modulePath returns the module path (e.g. "github.com/go-simd/highway")
 // so the scan can scope to go-highway symbols without hardcoding the path.
 func modulePath(t *testing.T, repoRoot string) string {
 	t.Helper()

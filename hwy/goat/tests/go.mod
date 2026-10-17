@@ -1,4 +1,4 @@
-module github.com/ajroetker/go-highway/hwy/goat/tests
+module github.com/go-simd/highway/hwy/goat/tests
 
 go 1.26
 

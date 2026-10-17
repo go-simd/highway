@@ -7,7 +7,7 @@ package quantize
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/quantize/asm"
+	"github.com/go-simd/highway/hwy/contrib/quantize/asm"
 )
 
 func dequantizeUint8AsmF32(input []uint8, output []float32, min, scale float32) {

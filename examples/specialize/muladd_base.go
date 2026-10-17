@@ -38,7 +38,7 @@ package specialize
 
 //go:generate go run ../../cmd/hwygen -input muladd_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch specialize
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseMulAdd computes element-wise fused multiply-add: out[i] += x[i] * y[i].
 //

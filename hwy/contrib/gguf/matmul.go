@@ -17,7 +17,7 @@ package gguf
 import (
 	"fmt"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // GGUFMatMul computes output = input @ weights^T where weights are in native

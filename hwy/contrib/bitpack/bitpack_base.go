@@ -17,8 +17,8 @@ package bitpack
 //go:generate go run ../../../cmd/hwygen -input bitpack_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch bitpack
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/vec"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/vec"
 )
 
 // MaxBits finds the minimum number of bits required to represent

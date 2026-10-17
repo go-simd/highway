@@ -7,8 +7,8 @@ package nn
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/nn/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/nn/asm"
 )
 
 func denseAsmF16(x, weight, bias, output []hwy.Float16, batchSize, inFeatures, outFeatures int) {

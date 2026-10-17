@@ -14,7 +14,7 @@
 
 package gguf
 
-import "github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+import "github.com/go-simd/highway/hwy/contrib/workerpool"
 
 // SMEGGUFMatMul is the SME-accelerated GGUF matmul using SMOPA/SUMOPA integer
 // outer products. Set to non-nil by init() on SME-capable ARM64 hardware.

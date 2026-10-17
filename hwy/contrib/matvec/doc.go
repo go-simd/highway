@@ -37,7 +37,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/matvec"
+//	import "github.com/go-simd/highway/hwy/contrib/matvec"
 //
 //	// Matrix-vector product: result = M * v
 //	// M is 3x4 matrix in row-major order:

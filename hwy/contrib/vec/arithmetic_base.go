@@ -25,7 +25,7 @@ package vec
 
 //go:generate go run ../../../cmd/hwygen -input arithmetic_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch arithmetic
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseAdd performs in-place element-wise addition: dst[i] += s[i].
 //

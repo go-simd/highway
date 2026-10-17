@@ -105,7 +105,7 @@ func TestParseSimpleFunction(t *testing.T) {
 
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAdd[T hwy.Floats](a, b, result []T) {
 	size := min(len(a), len(b), len(result))
@@ -182,7 +182,7 @@ func TestGeneratorEndToEnd(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "add.go")
 	content := `package testadd
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAdd[T hwy.Floats](a, b, result []T) {
 	size := min(len(a), len(b), len(result))
@@ -306,7 +306,7 @@ func TestFallbackOnlyDispatcherOmitsUnusedHwyHack(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "copy.go")
 	content := `package testcopy
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseCopy(src, dst []uint32) {
 	size := min(len(src), len(dst))
@@ -340,7 +340,7 @@ func BaseCopy(src, dst []uint32) {
 	if strings.Contains(code, "_ = hwy.NoSimdEnv") {
 		t.Fatalf("fallback-only dispatcher should not include unused hwy hack:\n%s", code)
 	}
-	if strings.Contains(code, "\"github.com/ajroetker/go-highway/hwy\"") {
+	if strings.Contains(code, "\"github.com/go-simd/highway/hwy\"") {
 		t.Fatalf("fallback-only dispatcher should not import hwy when signatures do not need it:\n%s", code)
 	}
 }
@@ -387,8 +387,8 @@ func TestContribSubpackageImports(t *testing.T) {
 	content := `package testsigmoid
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib"
 )
 
 func BaseSigmoid[T hwy.Floats](input, output []T) {
@@ -428,7 +428,7 @@ func BaseSigmoid[T hwy.Floats](input, output []T) {
 	avx2Str := string(avx2Content)
 
 	// Should have contrib/math import for SIMD target
-	if !strings.Contains(avx2Str, `"github.com/ajroetker/go-highway/hwy/contrib/math"`) {
+	if !strings.Contains(avx2Str, `"github.com/go-simd/highway/hwy/contrib/math"`) {
 		t.Error("AVX2 output missing contrib/math import")
 	}
 
@@ -447,7 +447,7 @@ func BaseSigmoid[T hwy.Floats](input, output []T) {
 	fallbackStr := string(fallbackContent)
 
 	// Fallback should use hwy package for core ops
-	if !strings.Contains(fallbackStr, `"github.com/ajroetker/go-highway/hwy"`) {
+	if !strings.Contains(fallbackStr, `"github.com/go-simd/highway/hwy"`) {
 		t.Error("Fallback output missing hwy import")
 	}
 
@@ -755,7 +755,7 @@ func TestConditionalBlockFiltering(t *testing.T) {
 
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseTest[T hwy.Floats](a, result []T) {
 	size := len(a)
@@ -818,7 +818,7 @@ func TestOutputPrefix(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "prefix_test.go")
 	content := `package testprefix
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAdd[T hwy.Floats](a, b, result []T) {
 	size := min(len(a), len(b), len(result))
@@ -892,7 +892,7 @@ func TestDispatchPrefix(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "dispatch_prefix.go")
 	content := `package testdispatch
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAdd[T hwy.Floats](a, b, result []T) {
 	size := min(len(a), len(b), len(result))
@@ -952,7 +952,7 @@ func TestLoadStoreTransformation(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "load.go")
 	content := `package testload
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseCopy[T hwy.FloatsNative](src, dst []T) {
 	n := hwy.NumLanes[T]()
@@ -1043,7 +1043,7 @@ func TestNumLanesTypeParameter(t *testing.T) {
 
 import (
 	"unsafe"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseDecodeFloat32s has float32 as first slice parameter, but uses uint8 operations.
@@ -1153,7 +1153,7 @@ func TestCModeExpGeneration(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "exp_base.go")
 	content := `package testexp
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseExpVec[T hwy.Floats](x hwy.Vec[T]) hwy.Vec[T] {
 	return hwy.Mul(x, x)
@@ -2054,9 +2054,9 @@ func TestCModeAsmCorrectnessF32(t *testing.T) {
 
 go 1.26
 
-require github.com/ajroetker/go-highway v0.0.0
+require github.com/go-simd/highway v0.0.0
 
-replace github.com/ajroetker/go-highway => %s
+replace github.com/go-simd/highway => %s
 `, hwyRoot)
 	if err := os.WriteFile(filepath.Join(tmpDir, "go.mod"), []byte(goModContent), 0644); err != nil {
 		t.Fatalf("write go.mod: %v", err)
@@ -2485,7 +2485,7 @@ func TestTranslateReturnValueAsOutputPointer(t *testing.T) {
 	// Synthetic function with a return value
 	fset := token.NewFileSet()
 	src := `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseSum(input []uint64) uint32 {
 	acc := hwy.Zero[uint64]()
 	return uint32(hwy.ReduceSum(acc))
@@ -2554,7 +2554,7 @@ func TestTranslateNewHwyOps(t *testing.T) {
 		{
 			name: "ReduceSum",
 			goCode: `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseTest(a []float32, n int) {
 	v := hwy.Load(a[:])
 	s := hwy.ReduceSum(v)
@@ -2565,7 +2565,7 @@ func BaseTest(a []float32, n int) {
 		{
 			name: "InterleaveLower_Upper",
 			goCode: `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseTest(a []float32, n int) {
 	v1 := hwy.Load(a[:])
 	v2 := hwy.Load(a[:])
@@ -2579,7 +2579,7 @@ func BaseTest(a []float32, n int) {
 		{
 			name: "LessThan_IfThenElse",
 			goCode: `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseTest(a []float32, n int) {
 	v := hwy.Load(a[:])
 	zero := hwy.Zero[float32]()
@@ -2649,7 +2649,7 @@ func TestTranslateTypeConversions(t *testing.T) {
 
 	fset := token.NewFileSet()
 	src := `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseTest(a []uint64, n int) {
 	v := hwy.Load(a[:])
 	s := hwy.ReduceSum(v)
@@ -2840,9 +2840,9 @@ func MatMulHandwrittenF32(a, b, c []float32, m, n, k int) {
 
 go 1.26
 
-require github.com/ajroetker/go-highway v0.0.0
+require github.com/go-simd/highway v0.0.0
 
-replace github.com/ajroetker/go-highway => %s
+replace github.com/go-simd/highway => %s
 `, hwyRoot)
 	if err := os.WriteFile(filepath.Join(tmpDir, "go.mod"), []byte(goModContent), 0644); err != nil {
 		t.Fatalf("write go.mod: %v", err)
@@ -3083,7 +3083,7 @@ func TestTranslateDeferredPopCountAccum(t *testing.T) {
 	// Synthetic Go source with sum += uint64(ReduceSum(PopCount(And(...)))) in a Load4 loop
 	src := `package testpkg
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseTestPopCount(a, b []uint64) uint64 {
 	var sum0, sum1, sum2, sum3 uint64
@@ -3791,7 +3791,7 @@ func TestTranslateLoad4NEON(t *testing.T) {
 
 	fset := token.NewFileSet()
 	src := `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseLoad4Test(data []uint64, n int) {
 	lanes := hwy.Zero[uint64]().NumLanes()
 	stride := lanes * 4
@@ -3870,7 +3870,7 @@ func TestTranslateGetLaneVariableIndex(t *testing.T) {
 
 	fset := token.NewFileSet()
 	src := `package test
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseGetLaneTest(data []float32, n int) {
 	v := hwy.Load(data[0:])
 	for j := range 4 {
@@ -4162,7 +4162,7 @@ func TestASTTranslatorContinueBreak(t *testing.T) {
 	fset := token.NewFileSet()
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseContinueBreak(data []float32, n int) {
 	for i := 0; i < n; i++ {
@@ -4228,7 +4228,7 @@ func TestASTTranslatorNilComparison(t *testing.T) {
 	fset := token.NewFileSet()
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseNilCheck(data, bias []float32, n int) {
 	for i := 0; i < n; i++ {
@@ -4297,7 +4297,7 @@ func TestASTTranslatorStdMathCalls(t *testing.T) {
 
 import stdmath "math"
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseMathOps(data []float32, n int) {
 	for i := 0; i < n; i++ {
@@ -4382,7 +4382,7 @@ func TestASTTranslatorScalarMake(t *testing.T) {
 	fset := token.NewFileSet()
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseScalarMake(data []float32, n int) {
 	shifted := make([]float32, n)
@@ -4452,7 +4452,7 @@ func TestASTTranslatorSlideUpLanes(t *testing.T) {
 	fset := token.NewFileSet()
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseSlideUp(data []float32, n int) {
 	for i := 0; i < n; i += 4 {
@@ -4518,7 +4518,7 @@ func TestASTTranslatorSlideUpLanesF64(t *testing.T) {
 	fset := token.NewFileSet()
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseSlideUpF64(data []float64, n int) {
 	for i := 0; i < n; i += 2 {
@@ -4730,7 +4730,7 @@ func TestIsGoScalarIntType(t *testing.T) {
 func TestASTTranslatorLenWithExplicitIntParams(t *testing.T) {
 	src := `package testpkg
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseTestLenWithInts[T hwy.Floats](a, b []T, m, n int) {
 	lanes := hwy.Zero[T]().NumLanes()
@@ -4795,7 +4795,7 @@ func BaseTestLenWithInts[T hwy.Floats](a, b []T, m, n int) {
 func TestASTTranslatorUnsupportedParamType(t *testing.T) {
 	src := `package testpkg
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 type MyConfig struct{ Size int }
 
@@ -5080,7 +5080,7 @@ func TestBF16CEmitterInlineHelpers(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "exp_base.go")
 	content := `package testbf16
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseExpVec[T hwy.Floats](x hwy.Vec[T]) hwy.Vec[T] {
 	return hwy.Mul(x, x)
@@ -5272,7 +5272,7 @@ func TestParseGenDirectiveIntegration(t *testing.T) {
 		{
 			name: "single combo bare values",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1=hwy.Float16, T2=float32
 func BaseDotGeneral[T1, T2 hwy.Floats](a []T1, acc []T2) {
 	_ = hwy.Add(hwy.Vec[T1]{}, hwy.Vec[T1]{})
@@ -5285,7 +5285,7 @@ func BaseDotGeneral[T1, T2 hwy.Floats](a []T1, acc []T2) {
 		{
 			name: "set expansion",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1={hwy.Float16, hwy.BFloat16}, T2=float32
 func BaseDotGeneral[T1, T2 hwy.Lanes](a []T1, acc []T2) {
 	_ = hwy.Add(hwy.Vec[T1]{}, hwy.Vec[T1]{})
@@ -5298,7 +5298,7 @@ func BaseDotGeneral[T1, T2 hwy.Lanes](a []T1, acc []T2) {
 		{
 			name: "cross-product with back-reference",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1={hwy.Float16, hwy.BFloat16}, T2=float32, T3={T1, float32}
 func BaseDotGeneral[T1, T2, T3 hwy.Lanes](a []T1, acc []T2, out []T3) {
 	_ = hwy.Add(hwy.Vec[T1]{}, hwy.Vec[T1]{})
@@ -5311,7 +5311,7 @@ func BaseDotGeneral[T1, T2, T3 hwy.Lanes](a []T1, acc []T2, out []T3) {
 		{
 			name: "multiple hwy:gen lines",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1={hwy.Float16, hwy.BFloat16}, T2=float32, T3={T1, float32}
 //hwy:gen T1=int8, T2=int32, T3=int32
 func BaseDotGeneral[T1, T2, T3 hwy.Lanes](a []T1, acc []T2, out []T3) {
@@ -5325,7 +5325,7 @@ func BaseDotGeneral[T1, T2, T3 hwy.Lanes](a []T1, acc []T2, out []T3) {
 		{
 			name: "dependent back-reference T3=T1",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1={hwy.Float16, hwy.BFloat16}, T2=float32, T3=T1
 func BaseFoo[T1, T2, T3 hwy.Lanes](a []T1, b []T2, c []T3) {
 	_ = hwy.Add(hwy.Vec[T1]{}, hwy.Vec[T1]{})
@@ -5338,7 +5338,7 @@ func BaseFoo[T1, T2, T3 hwy.Lanes](a []T1, b []T2, c []T3) {
 		{
 			name: "no directive",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 func BaseSigmoid[T hwy.Floats](data []T) {
 	_ = hwy.Add(hwy.Vec[T]{}, hwy.Vec[T]{})
 }
@@ -5429,7 +5429,7 @@ func TestParseGenDirectiveSilentSkip(t *testing.T) {
 		{
 			name: "missing equals in directive",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen T1 float32
 func BaseFoo[T1 hwy.Floats](data []T1) {
 	_ = hwy.Add(hwy.Vec[T1]{}, hwy.Vec[T1]{})
@@ -5439,7 +5439,7 @@ func BaseFoo[T1 hwy.Floats](data []T1) {
 		{
 			name: "invalid param name in directive",
 			src: `package foo
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 //hwy:gen X=float32
 func BaseFoo[T hwy.Floats](data []T) {
 	_ = hwy.Add(hwy.Vec[T]{}, hwy.Vec[T]{})
@@ -5738,7 +5738,7 @@ func TestGetCElemTypes(t *testing.T) {
 // its AST. The source is wrapped in a function to make it a valid Go file.
 func mustParseBody(t *testing.T, src string) *ast.BlockStmt {
 	t.Helper()
-	wrapped := "package p\nimport \"github.com/ajroetker/go-highway/hwy\"\nfunc f() " + src
+	wrapped := "package p\nimport \"github.com/go-simd/highway/hwy\"\nfunc f() " + src
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, "test.go", wrapped, 0)
 	if err != nil {
@@ -6553,7 +6553,7 @@ func TestParseSpecializesDirective(t *testing.T) {
 	testFile := filepath.Join(tmpDir, "test_base.go")
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={hwy.Float16, hwy.BFloat16}
 //hwy:specializes MatMul
@@ -6588,7 +6588,7 @@ func TestParseTargetsDirective(t *testing.T) {
 	testFile := filepath.Join(tmpDir, "test_base.go")
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={hwy.Float16, hwy.BFloat16}
 //hwy:specializes MatMul
@@ -6624,7 +6624,7 @@ func TestParseTargetsDirectiveRejectsInvalidTarget(t *testing.T) {
 	testFile := filepath.Join(tmpDir, "test_base.go")
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:targets neon:weird
 func BaseOp[T hwy.Floats](a []T) {
@@ -6652,7 +6652,7 @@ func TestParseRejectsSpecializesOnNonBaseFunction(t *testing.T) {
 	testFile := filepath.Join(tmpDir, "test.go")
 	content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:specializes Op
 func helper[T hwy.Floats](a []T) {
@@ -6724,7 +6724,7 @@ func TestGeneratorValidate(t *testing.T) {
 		testFile := filepath.Join(tmpDir, "op_base.go")
 		content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseOp[T hwy.Floats](a, b []T) {
 	n := min(len(a), len(b))
@@ -6761,7 +6761,7 @@ func BaseOp[T hwy.Floats](a, b []T) {
 		testFile := filepath.Join(tmpDir, "op.go")
 		content := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func helper[T hwy.Floats](a []T) {
 	_ = hwy.Add(hwy.Vec[T]{}, hwy.Vec[T]{})
@@ -7137,7 +7137,7 @@ func TestSpecializesEndToEnd(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "matmul_base.go")
 	primaryContent := `package testmatmul
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={float32, float64}
 func BaseMatMul[T hwy.Floats](a, b, c []T, m, n, k int) {
@@ -7155,7 +7155,7 @@ func BaseMatMul[T hwy.Floats](a, b, c []T, m, n, k int) {
 	specFile := filepath.Join(tmpDir, "matmul_half_base.go")
 	specContent := `package testmatmul
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={hwy.Float16, hwy.BFloat16}
 //hwy:specializes MatMul
@@ -7245,7 +7245,7 @@ func TestSpecializesWithTargets(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "op_base.go")
 	primaryContent := `package testop
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={float32, float64}
 func BaseOp[T hwy.Floats](a, b []T) {
@@ -7263,7 +7263,7 @@ func BaseOp[T hwy.Floats](a, b []T) {
 	specFile := filepath.Join(tmpDir, "op_neon_base.go")
 	specContent := `package testop
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={float32, float64}
 //hwy:specializes Op
@@ -7339,7 +7339,7 @@ func TestScanSpecializations(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "main_base.go")
 	primaryContent := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={float32, float64}
 func BaseMain[T hwy.Floats](a []T) {
@@ -7351,7 +7351,7 @@ func BaseMain[T hwy.Floats](a []T) {
 	specFile := filepath.Join(tmpDir, "special_base.go")
 	specContent := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={hwy.Float16, hwy.BFloat16}
 //hwy:specializes Main
@@ -7411,7 +7411,7 @@ func TestCModeSpecializesVecVec(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "op_base.go")
 	primarySrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseOp[T hwy.FloatsNative](x hwy.Vec[T]) hwy.Vec[T] {
 	return hwy.Mul(x, x)
@@ -7425,7 +7425,7 @@ func BaseOp[T hwy.FloatsNative](x hwy.Vec[T]) hwy.Vec[T] {
 	specFile := filepath.Join(tmpDir, "op_neon_base.go")
 	specSrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:specializes Op
 //hwy:targets neon
@@ -7482,7 +7482,7 @@ func TestCModeSpecializesTypeSelection(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "vec_base.go")
 	primarySrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={float32, float64}
 func BaseVecOp[T hwy.FloatsNative](x hwy.Vec[T]) hwy.Vec[T] {
@@ -7497,7 +7497,7 @@ func BaseVecOp[T hwy.FloatsNative](x hwy.Vec[T]) hwy.Vec[T] {
 	specFile := filepath.Join(tmpDir, "vec_half_base.go")
 	specSrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:gen T={hwy.Float16, hwy.BFloat16}
 //hwy:specializes VecOp
@@ -7562,7 +7562,7 @@ func TestCModeSpecializesAST(t *testing.T) {
 	primaryFile := filepath.Join(tmpDir, "add_base.go")
 	primarySrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAddSlice[T hwy.FloatsNative](a, b, c []T) {
 	n := len(a)
@@ -7581,7 +7581,7 @@ func BaseAddSlice[T hwy.FloatsNative](a, b, c []T) {
 	specFile := filepath.Join(tmpDir, "add_neon_base.go")
 	specSrc := `package testspec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //hwy:specializes AddSlice
 //hwy:targets neon
@@ -7774,7 +7774,7 @@ func TestTypeSwitchResolution(t *testing.T) {
 
 import (
 	"math"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 func BaseNormLike[T hwy.Floats](x T) T {
@@ -7844,7 +7844,7 @@ func TestCModeTypeSwitchGeneration(t *testing.T) {
 
 import (
 	"math"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 func BaseSqrtScalar[T hwy.Floats](v []T) T {
@@ -8054,7 +8054,7 @@ func TestParseInfersSharedLenExpr(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "shared_len_base.go")
 	src := `package test
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAndSlice[T hwy.Integers](dst, a, b []T) {
 	n := min(len(dst), min(len(a), len(b)))
@@ -8292,7 +8292,7 @@ func TestEmitZCDispatchForSlicesOmitsDispatcherOwnedInit(t *testing.T) {
 	if strings.Contains(code, "func init()") || strings.Contains(code, "func initRoaringNeonCAsm()") {
 		t.Fatalf("dispatcher-owned NEON asm file should not self-register:\n%s", code)
 	}
-	if strings.Contains(code, "\"github.com/ajroetker/go-highway/hwy\"") {
+	if strings.Contains(code, "\"github.com/go-simd/highway/hwy\"") {
 		t.Fatalf("uint64 adapter-only file should not import hwy:\n%s", code)
 	}
 	if !strings.Contains(code, "func "+buildAdapterFuncName(pf.Name, "uint64")+"(") {

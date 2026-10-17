@@ -25,7 +25,7 @@ package roaring
 import (
 	"math/bits"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BasePopcntSlice returns the total number of set bits across all elements.

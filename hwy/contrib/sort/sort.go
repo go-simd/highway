@@ -14,7 +14,7 @@
 
 package sort
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // Thresholds for different sorting strategies.
 const (

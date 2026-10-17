@@ -18,7 +18,7 @@ import (
 	"slices"
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Helper functions for sorting that are shared across all implementations.

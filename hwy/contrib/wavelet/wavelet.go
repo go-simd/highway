@@ -15,7 +15,7 @@
 package wavelet
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Synthesize53 applies the inverse 5/3 wavelet transform using pre-allocated buffers.

@@ -20,7 +20,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // scalarMatVec computes matrix-vector product using scalar operations for reference.

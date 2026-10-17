@@ -43,7 +43,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/nn"
+//	import "github.com/go-simd/highway/hwy/contrib/nn"
 //
 //	func ComputeSoftmax(logits []float32) []float32 {
 //	    probs := make([]float32, len(logits))

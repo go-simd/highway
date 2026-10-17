@@ -7,7 +7,7 @@ package varint
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/varint/asm"
+	"github.com/go-simd/highway/hwy/contrib/varint/asm"
 )
 
 func decodeGroupVarint32AsmU8(src []byte) ([4]uint32, int) {

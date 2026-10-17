@@ -45,7 +45,7 @@ Cross compile is not supported, so you need to run GoAT on the same architecture
 ## Installation
 
 ```bash
-go install github.com/ajroetker/go-highway/hwy/goat@latest
+go install github.com/go-simd/highway/hwy/goat@latest
 ```
 
 ## Example

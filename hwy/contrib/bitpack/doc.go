@@ -45,7 +45,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/bitpack"
+//	import "github.com/go-simd/highway/hwy/contrib/bitpack"
 //
 //	// Find the bit width needed
 //	values := []uint32{5, 12, 3, 15, 7, 2, 9, 11}

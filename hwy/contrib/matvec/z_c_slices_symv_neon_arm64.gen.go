@@ -7,8 +7,8 @@ package matvec
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matvec/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matvec/asm"
 )
 
 func symvLNAsmF16(a, x, y []hwy.Float16, n int) {

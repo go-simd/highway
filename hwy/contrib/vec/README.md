@@ -7,7 +7,7 @@ This package provides SIMD-accelerated vector operations commonly used in machin
 ### Dot Product
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/vec"
+import "github.com/go-simd/highway/hwy/contrib/vec"
 
 a := []float32{1, 2, 3, 4}
 b := []float32{5, 6, 7, 8}

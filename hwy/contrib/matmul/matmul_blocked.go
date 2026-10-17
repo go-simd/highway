@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_blocked.go -dispatch matmul_blocked -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // Block size tuned for L1 cache (32KB typical).
 // 3 blocks of 48x48 float32 = 3 * 48 * 48 * 4 = 27KB < 32KB L1.

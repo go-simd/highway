@@ -16,7 +16,7 @@ package vec
 
 //go:generate go run ../../../cmd/hwygen -input dot_int_base.go -output . -targets neon:asm,fallback -dispatch dotint
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseDotInt computes the integer dot product of two int8 or uint8 slices,
 // returning the sum as int32. Uses widening 4-group dot product instructions

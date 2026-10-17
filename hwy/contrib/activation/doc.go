@@ -25,7 +25,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/activation"
+//	import "github.com/go-simd/highway/hwy/contrib/activation"
 //
 //	func ApplyGELU(input []float32) []float32 {
 //	    output := make([]float32, len(input))

@@ -23,7 +23,7 @@ package asm
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // AVX-512 with FP16 and BF16 extensions

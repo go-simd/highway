@@ -4,14 +4,14 @@ A portable SIMD abstraction library for Go, inspired by Google's C++ Highway lib
 
 ## Overview
 
-**Repository**: `github.com/ajroetker/go-highway` (new standalone repo)
+**Repository**: `github.com/go-simd/highway` (new standalone repo)
 **Target**: Go 1.26+ with `GOEXPERIMENT=simd`
 **Initial Architecture**: AMD64 AVX2 + pure-Go fallback
 
 ## Package Structure
 
 ```
-github.com/ajroetker/go-highway/
+github.com/go-simd/highway/
 ├── hwy/                    # Core portable API
 │   ├── types.go            # Vec[T], Lanes, Floats constraints
 │   ├── tags.go             # ScalableTag, FixedTag128/256/512

@@ -16,7 +16,7 @@ package roaring
 
 //go:generate go run ../../../cmd/hwygen -input bitwise_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch bitwise
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseAndSlice computes dst[i] = a[i] & b[i] for all i up to min(len(dst), len(a), len(b)).
 // This is the core operation for bitmap container AND in roaring bitmaps.

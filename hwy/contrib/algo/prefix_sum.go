@@ -14,7 +14,7 @@
 
 package algo
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // DeltaEncode computes adjacent differences in place.
 // Result[i] = data[i] - data[i-1] for i > 0, Result[0] = data[0] - base.

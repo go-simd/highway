@@ -14,7 +14,7 @@
 
 package wavelet
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // CDF 9/7 wavelet lifting coefficients.
 // These are the standard Cohen-Daubechies-Feauveau 9/7 biorthogonal wavelet

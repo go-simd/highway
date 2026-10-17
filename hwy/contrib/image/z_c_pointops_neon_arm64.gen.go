@@ -7,8 +7,8 @@ package image
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/image/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/image/asm"
 )
 
 func absAsmF16(img *Image[hwy.Float16], out *Image[hwy.Float16]) {

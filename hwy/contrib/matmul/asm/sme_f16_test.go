@@ -19,7 +19,7 @@ package asm
 import (
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // TestMultiTileMatMulFMOPAF16Debug tests F16 FMOPA matmul with a simple case

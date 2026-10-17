@@ -17,7 +17,7 @@
 package math
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // =============================================================================

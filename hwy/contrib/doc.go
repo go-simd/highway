@@ -28,7 +28,7 @@
 //
 // The algo package provides transform functions for applying operations to entire slices:
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/algo"
+//	import "github.com/go-simd/highway/hwy/contrib/algo"
 //
 //	// Named transforms
 //	algo.ExpTransform(input, output)    // Apply exp(x) to all elements
@@ -47,7 +47,7 @@
 //
 // The math package provides low-level SIMD transcendental functions:
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/math"
+//	import "github.com/go-simd/highway/hwy/contrib/math"
 //
 //	// Direct SIMD vector operations
 //	expX := math.Exp_AVX2_F32x8(x)
@@ -58,12 +58,12 @@
 //
 // If you were using the old flat contrib package:
 //
-//	Old: import "github.com/ajroetker/go-highway/hwy/contrib"
+//	Old: import "github.com/go-simd/highway/hwy/contrib"
 //	     contrib.ExpTransform(...)
 //	     contrib.Exp_AVX2_F32x8(...)
 //
-//	New: import "github.com/ajroetker/go-highway/hwy/contrib/algo"
-//	     import "github.com/ajroetker/go-highway/hwy/contrib/math"
+//	New: import "github.com/go-simd/highway/hwy/contrib/algo"
+//	     import "github.com/go-simd/highway/hwy/contrib/math"
 //	     algo.ExpTransform(...)
 //	     math.Exp_AVX2_F32x8(...)
 //

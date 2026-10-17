@@ -14,7 +14,7 @@
 
 package vec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // =============================================================================
 // Constants for vector operations

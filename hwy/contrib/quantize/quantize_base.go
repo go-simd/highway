@@ -17,7 +17,7 @@ package quantize
 //go:generate go run ../../../cmd/hwygen -input quantize_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch quantize
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseDequantizeUint8 converts quantized uint8 values to float32.

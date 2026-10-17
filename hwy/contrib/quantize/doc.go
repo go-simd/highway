@@ -37,7 +37,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/quantize"
+//	import "github.com/go-simd/highway/hwy/contrib/quantize"
 //
 //	// Dequantize uint8 embeddings to float32
 //	raw := []uint8{0, 128, 255, 64}

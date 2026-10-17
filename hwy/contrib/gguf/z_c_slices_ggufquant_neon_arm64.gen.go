@@ -7,7 +7,7 @@ package gguf
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/gguf/asm"
+	"github.com/go-simd/highway/hwy/contrib/gguf/asm"
 )
 
 func quantizeQ8_0AsmF32(input []float32, output []uint8) {

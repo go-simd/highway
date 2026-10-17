@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_fused_int8.go -dispatch fusedint8matmul -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseFusedInt8MatMul performs fused Int8 dequantization + matrix multiplication + optional bias.
 // output[m,n] = sum_k(input[m,k] * (weights[k,n] * scale[k,groupIdx])) + bias[n]

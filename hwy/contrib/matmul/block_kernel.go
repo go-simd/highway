@@ -4,7 +4,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input block_kernel.go -dispatch blockkernel -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseBlockMulAdd computes C += A * B for square blocks.
 //

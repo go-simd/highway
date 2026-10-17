@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_skinny_base.go -dispatch matmul_skinny -output . -targets neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseSkinnyMatMul computes C = A * B for small M (1-64 rows).
 //

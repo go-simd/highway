@@ -7,7 +7,7 @@ package algo
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/algo/asm"
+	"github.com/go-simd/highway/hwy/contrib/algo/asm"
 )
 
 func deltaDecodeAsmS32(data []int32, base int32) {

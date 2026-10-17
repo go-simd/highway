@@ -75,7 +75,7 @@ When positions are evenly spaced (common case), delta encoding produces constant
 ### StreamVByte Encoding/Decoding
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/varint"
+import "github.com/go-simd/highway/hwy/contrib/varint"
 
 // Encode
 ctrl, data := varint.EncodeStreamVByte32(values)
@@ -90,7 +90,7 @@ varint.DecodeStreamVByte32Into(ctrl, data, dst)
 ### Delta Decoding (Prefix Sum)
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/algo"
+import "github.com/go-simd/highway/hwy/contrib/algo"
 
 // Delta decode in place (reconstructs absolute values from deltas)
 // data[i] becomes base + data[0] + data[1] + ... + data[i]

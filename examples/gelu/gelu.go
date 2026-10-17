@@ -28,8 +28,8 @@ package gelu
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 // BaseGELU computes the Gaussian Error Linear Unit activation function.

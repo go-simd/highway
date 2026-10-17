@@ -23,7 +23,7 @@ package asm
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // The checked-in GoAT AVX-512 outputs are retained here, but the originating C

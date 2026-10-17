@@ -7,8 +7,8 @@ package gelu
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/examples/gelu/asm"
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/examples/gelu/asm"
+	"github.com/go-simd/highway/hwy"
 )
 
 func gELUAsmF16(input, output []hwy.Float16) {

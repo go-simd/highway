@@ -35,7 +35,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/algo"
+//	import "github.com/go-simd/highway/hwy/contrib/algo"
 //
 //	// Using named transforms
 //	func ProcessData(input []float32) []float32 {

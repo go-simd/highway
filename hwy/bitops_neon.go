@@ -20,7 +20,7 @@ import (
 	"math/bits"
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/asm"
+	"github.com/go-simd/highway/hwy/asm"
 )
 
 // This file provides NEON SIMD implementations of bit manipulation operations.

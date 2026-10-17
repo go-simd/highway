@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Parallel BlockMulAdd tuning parameters

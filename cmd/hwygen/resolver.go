@@ -24,7 +24,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ajroetker/go-highway/cmd/hwygen/ir"
+	"github.com/go-simd/highway/cmd/hwygen/ir"
 )
 
 // FunctionRegistry resolves cross-package function references within go-highway.
@@ -33,7 +33,7 @@ type FunctionRegistry struct {
 	// moduleRoot is the absolute path to go-highway root (containing go.mod).
 	moduleRoot string
 
-	// moduleName is the Go module name (e.g., "github.com/ajroetker/go-highway").
+	// moduleName is the Go module name (e.g., "github.com/go-simd/highway").
 	moduleName string
 
 	// parsedPkgs caches parsed packages by import path.
@@ -172,9 +172,9 @@ func (r *FunctionRegistry) Resolve(qualifiedName string, typeArgs []string) (*ir
 
 // resolveImportPath converts a package alias to a full import path.
 // For go-highway internal packages:
-//   - "math" → "github.com/ajroetker/go-highway/hwy/contrib/math"
-//   - "algo" → "github.com/ajroetker/go-highway/hwy/contrib/algo"
-//   - "hwy"  → "github.com/ajroetker/go-highway/hwy"
+//   - "math" → "github.com/go-simd/highway/hwy/contrib/math"
+//   - "algo" → "github.com/go-simd/highway/hwy/contrib/algo"
+//   - "hwy"  → "github.com/go-simd/highway/hwy"
 func (r *FunctionRegistry) resolveImportPath(alias string) (string, error) {
 	// Built-in mappings for go-highway packages
 	switch alias {

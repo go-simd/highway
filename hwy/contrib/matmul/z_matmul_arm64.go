@@ -27,9 +27,9 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // =============================================================================

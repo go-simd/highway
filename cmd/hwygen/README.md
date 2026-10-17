@@ -23,7 +23,7 @@ go build -o ../../bin/hwygen
 
 package mypkg
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseAdd[T hwy.Floats](dst, a, b []T) {
 	n := min(len(dst), min(len(a), len(b)))

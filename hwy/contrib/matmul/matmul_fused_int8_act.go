@@ -19,8 +19,8 @@ package matmul
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 // BaseFusedInt8MatMulSiLU performs fused Int8 dequantization + matmul + bias + SiLU activation.

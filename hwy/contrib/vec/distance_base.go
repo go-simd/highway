@@ -19,7 +19,7 @@ package vec
 import (
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseL2SquaredDistance computes the squared Euclidean distance between two slices.

@@ -22,7 +22,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ajroetker/go-highway/hwy/asm"
+	"github.com/go-simd/highway/hwy/asm"
 )
 
 func main() {

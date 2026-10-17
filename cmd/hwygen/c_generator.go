@@ -14,7 +14,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ajroetker/go-highway/cmd/hwygen/ir"
+	"github.com/go-simd/highway/cmd/hwygen/ir"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
@@ -830,7 +830,7 @@ func getCProfileForFile(cFile string, target Target) *CIntrinsicProfile {
 }
 
 // runGOAT invokes the GOAT tool to compile a C file to Go assembly.
-// It uses `go tool github.com/ajroetker/go-highway/hwy/goat` which requires goat to be
+// It uses `go tool github.com/go-simd/highway/hwy/goat` which requires goat to be
 // declared as a tool dependency in go.mod (via `go get -tool`).
 func runGOAT(cFile string, profile *CIntrinsicProfile) error {
 	// Use the Go binary from GOROOT (same toolchain that built hwygen)
@@ -856,7 +856,7 @@ func runGOAT(cFile string, profile *CIntrinsicProfile) error {
 	if profile != nil && profile.GoatTarget != "" {
 		goatTarget = profile.GoatTarget
 	}
-	args := []string{"tool", "github.com/ajroetker/go-highway/hwy/goat", absCFile,
+	args := []string{"tool", "github.com/go-simd/highway/hwy/goat", absCFile,
 		"-O3",
 		"-t", goatTarget,
 		"-o", filepath.Dir(absCFile),
@@ -1085,7 +1085,7 @@ func (g *Generator) emitCWrappers(funcs []ParsedFunc, target Target, outputDir s
 	if needsHwy {
 		fmt.Fprintf(&buf, "import (\n")
 		fmt.Fprintf(&buf, "\t\"unsafe\"\n\n")
-		fmt.Fprintf(&buf, "\t\"github.com/ajroetker/go-highway/hwy\"\n")
+		fmt.Fprintf(&buf, "\t\"github.com/go-simd/highway/hwy\"\n")
 		fmt.Fprintf(&buf, ")\n\n")
 	} else {
 		fmt.Fprintf(&buf, "import \"unsafe\"\n\n")
@@ -1389,7 +1389,7 @@ func (g *Generator) emitAsmDispatchBridge(funcs []ParsedFunc, target Target, com
 	fmt.Fprintf(&buf, "//go:build %s\n", buildTag)
 	fmt.Fprintf(&buf, "\npackage %s\n\n", g.PackageOut)
 	if needsHwy {
-		fmt.Fprintf(&buf, "import \"github.com/ajroetker/go-highway/hwy\"\n\n")
+		fmt.Fprintf(&buf, "import \"github.com/go-simd/highway/hwy\"\n\n")
 	}
 	fmt.Fprintf(&buf, "func %s() {\n", initFuncName)
 	emitGuardedDispatchAssignments(&buf, funcs, target, compiledElemSuffixes)
@@ -1473,7 +1473,7 @@ func (g *Generator) emitZCDispatch(funcs []ParsedFunc, target Target) error {
 	fmt.Fprintf(&buf, "import (\n")
 	fmt.Fprintf(&buf, "\t\"unsafe\"\n\n")
 	if needsHwy {
-		fmt.Fprintf(&buf, "\t\"github.com/ajroetker/go-highway/hwy\"\n")
+		fmt.Fprintf(&buf, "\t\"github.com/go-simd/highway/hwy\"\n")
 	}
 	fmt.Fprintf(&buf, "\t\"%s\"\n", asmImport)
 	fmt.Fprintf(&buf, ")\n\n")
@@ -1728,7 +1728,7 @@ func (g *Generator) emitZCDispatchForSlices(funcs []ParsedFunc, target Target, c
 	fmt.Fprintf(&buf, "import (\n")
 	fmt.Fprintf(&buf, "\t\"unsafe\"\n\n")
 	if needsHwy {
-		fmt.Fprintf(&buf, "\t\"github.com/ajroetker/go-highway/hwy\"\n")
+		fmt.Fprintf(&buf, "\t\"github.com/go-simd/highway/hwy\"\n")
 	}
 	fmt.Fprintf(&buf, "\t\"%s\"\n", asmImport)
 	fmt.Fprintf(&buf, ")\n\n")

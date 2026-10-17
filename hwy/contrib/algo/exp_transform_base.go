@@ -15,8 +15,8 @@
 package algo
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 //go:generate go run ../../../cmd/hwygen -input exp_transform_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch exptransform

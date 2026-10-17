@@ -7,7 +7,7 @@ package varint
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/varint/asm"
+	"github.com/go-simd/highway/hwy/contrib/varint/asm"
 )
 
 func findVarintEndsAsmU8(src []byte) uint32 {

@@ -90,7 +90,7 @@
 //
 //	import (
 //	    "simd/archsimd"
-//	    "github.com/ajroetker/go-highway/hwy/contrib/math"
+//	    "github.com/go-simd/highway/hwy/contrib/math"
 //	)
 //
 //	// Direct SIMD function usage

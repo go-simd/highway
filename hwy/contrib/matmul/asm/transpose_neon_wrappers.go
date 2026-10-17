@@ -21,7 +21,7 @@ package asm
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 //go:generate go tool goat ../c/transpose_neon_arm64.c -O3 --target arm64 -e="-march=armv8.2-a+fp16"
