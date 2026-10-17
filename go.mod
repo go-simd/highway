@@ -33,3 +33,10 @@ require (
 replace github.com/go-simd/highway/hwy/goat => ./hwy/goat
 
 tool github.com/go-simd/highway/hwy/goat
+
+// v0.0.1 to v0.0.12 are upstream's tags, inherited when this repository was
+// forked from github.com/ajroetker/go-highway: their go.mod declares that path,
+// not this one, so none of them can be used as github.com/go-simd/highway. The
+// module proxy cached them anyway, and @latest pointed at v0.0.12. Retracted so
+// that go get skips them; this fork's first usable version is v0.0.13.
+retract [v0.0.1, v0.0.12]
