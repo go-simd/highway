@@ -16,7 +16,7 @@ package vec
 
 //go:generate go run ../../../cmd/hwygen -input reduce_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch reduce
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseSum computes the sum of all elements in a slice using hwy primitives.
 //

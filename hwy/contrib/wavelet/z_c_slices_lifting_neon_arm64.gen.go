@@ -7,8 +7,8 @@ package wavelet
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/wavelet/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/wavelet/asm"
 )
 
 func liftPredict53AsmS32(target []int32, tLen int, neighbor []int32, nLen, phase int) {

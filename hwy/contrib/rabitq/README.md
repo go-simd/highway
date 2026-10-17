@@ -12,7 +12,7 @@ RaBitQ quantizes high-dimensional vectors into compact binary codes, enabling fa
 ## Usage
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/rabitq"
+import "github.com/go-simd/highway/hwy/contrib/rabitq"
 
 // Compute weighted bit product for distance estimation
 // This is the hot path in RaBitQ search, called for every candidate vector

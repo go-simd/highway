@@ -7,8 +7,8 @@ package nn
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/nn/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/nn/asm"
 )
 
 func attentionWeightsAsmF16(q, k, mask, weights []hwy.Float16, seqLen, kvLen, headDim int, scale hwy.Float16) {

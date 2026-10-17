@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BenchmarkBF16MatMulGenerated benchmarks the hwygen-generated BF16 matmul

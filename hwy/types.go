@@ -20,7 +20,7 @@
 //
 // Basic usage:
 //
-//	import "github.com/ajroetker/go-highway/hwy"
+//	import "github.com/go-simd/highway/hwy"
 //
 //	// Load data into vectors
 //	a := hwy.LoadSlice(data1)

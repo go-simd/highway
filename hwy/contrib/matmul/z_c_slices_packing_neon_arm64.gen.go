@@ -7,8 +7,8 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func packLHSVecAsmF16(a, packed []hwy.Float16, m, k, rowStart, colStart, panelRows, panelK, mr int) int {

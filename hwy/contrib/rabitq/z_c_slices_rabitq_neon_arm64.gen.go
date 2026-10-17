@@ -7,7 +7,7 @@ package rabitq
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/rabitq/asm"
+	"github.com/go-simd/highway/hwy/contrib/rabitq/asm"
 )
 
 func bitProductAsmU64(code, q1, q2, q3, q4 []uint64) uint32 {

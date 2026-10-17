@@ -21,7 +21,7 @@ package asm
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Generate SME assembly from C source.

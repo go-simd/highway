@@ -7,8 +7,8 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func syrkLNAsmF16(c []hwy.Float16, ldc int, a []hwy.Float16, lda, n, k int) {

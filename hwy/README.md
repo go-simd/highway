@@ -5,7 +5,7 @@ Portable SIMD operations for Go with runtime CPU dispatch, inspired by Google's 
 ## Installation
 
 ```go
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 ```
 
 Requires Go 1.26+ for generics and SIMD support.
@@ -17,7 +17,7 @@ package main
 
 import (
     "fmt"
-    "github.com/ajroetker/go-highway/hwy"
+    "github.com/go-simd/highway/hwy"
 )
 
 func main() {
@@ -146,7 +146,7 @@ The `hwy/contrib` package is organized into subpackages:
 Apply operations to entire slices with zero allocation:
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/algo"
+import "github.com/go-simd/highway/hwy/contrib/algo"
 
 input := []float32{1.0, 2.0, 3.0, 4.0}
 output := make([]float32, len(input))
@@ -170,7 +170,7 @@ algo.Transform32(input, output,
 Direct SIMD vector operations:
 
 ```go
-import "github.com/ajroetker/go-highway/hwy/contrib/math"
+import "github.com/go-simd/highway/hwy/contrib/math"
 
 // SIMD vector functions
 expX := math.Exp_AVX2_F32x8(x)

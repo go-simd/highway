@@ -7,7 +7,7 @@ package loss
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/loss/asm"
+	"github.com/go-simd/highway/hwy/contrib/loss/asm"
 )
 
 func cutCrossEntropyGradAsmF32(hiddenStates, embeddings []float32, labels []int32, gradOutput []float32, numPositions, hiddenDim, vocabSize int) {

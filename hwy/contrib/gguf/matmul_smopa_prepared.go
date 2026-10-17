@@ -20,9 +20,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/gguf/asm"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/gguf/asm"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // GoAT compilation directives for 4-tile SUMOPA/SMOPA prepacked kernels.

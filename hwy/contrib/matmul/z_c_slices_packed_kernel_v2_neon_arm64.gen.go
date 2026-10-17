@@ -7,8 +7,8 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func packedMicroKernel4x2AsmF16(packedA, packedB, output []hwy.Float16, outputStride, outRowStart, outColStart, panelK, lanes int) {

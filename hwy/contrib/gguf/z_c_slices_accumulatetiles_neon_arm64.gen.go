@@ -7,7 +7,7 @@ package gguf
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/gguf/asm"
+	"github.com/go-simd/highway/hwy/contrib/gguf/asm"
 )
 
 func accumulateTilesSignedAsmF32(acc []float32, tiles []int32, sc, dA []float32, mTile, nRows int) {

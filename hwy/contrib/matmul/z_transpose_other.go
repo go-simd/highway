@@ -17,7 +17,7 @@
 package matmul
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // transposeScalarOther is a simple scalar transpose for all matrices on fallback platforms

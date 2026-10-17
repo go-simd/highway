@@ -17,8 +17,8 @@
 package vec
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matvec"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matvec"
 )
 
 // Dimension thresholds for SME batch operations.

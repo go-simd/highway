@@ -21,7 +21,7 @@ package matmul
 // This is a fallback path that's rarely used (only for non-4x2 configurations),
 // so the allocation overhead is acceptable.
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // packedMicroKernelGenericImpl is a generic fallback for non-4x2 configs.
 //

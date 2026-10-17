@@ -22,7 +22,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 // TestBlockMulAddFMOPAF32 tests the SME FMOPA assembly version.

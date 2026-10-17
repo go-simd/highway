@@ -18,7 +18,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Test sizes covering various boundary conditions

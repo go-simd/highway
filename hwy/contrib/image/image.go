@@ -31,7 +31,7 @@ package image
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Image is a single-channel 2D array with SIMD-aligned rows.

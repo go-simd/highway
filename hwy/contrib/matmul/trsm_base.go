@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input trsm_base.go -dispatch trsm -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseTrsmLN solves L * X = B for X, overwriting B with the solution.
 // L is n×n lower triangular (row-major), B is n×nrhs (row-major).

@@ -17,9 +17,9 @@ package nn
 import (
 	"sync"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // QKVDenseAuto computes a fused QKV projection using the best available

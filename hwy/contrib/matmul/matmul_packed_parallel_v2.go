@@ -17,8 +17,8 @@ package matmul
 import (
 	"runtime"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // getCacheParamsV2 returns V2-optimized cache parameters for the current architecture.

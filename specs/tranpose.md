@@ -54,7 +54,7 @@ go-highway/hwy/contrib/matmul/
 
 package matmul
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //go:generate go run ../../../cmd/hwygen -input transpose_base.go -output . -targets avx2,avx512,neon,fallback -dispatch transpose
 
@@ -135,7 +135,7 @@ func transposeEdgesScalar[T hwy.Floats](src []T, m, k int, dst []T, lanes int) {
 
 package matmul
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // Transpose function variables - set by architecture-specific init()
 var (
@@ -401,7 +401,7 @@ package asm
 
 import (
     "unsafe"
-    "github.com/ajroetker/go-highway/hwy"
+    "github.com/go-simd/highway/hwy"
 )
 
 //go:generate go tool goat ../c/transpose_neon_arm64.c -O3 --target arm64 -e="-march=armv8.2-a+fp16"
@@ -631,7 +631,7 @@ package asm
 
 import (
     "unsafe"
-    "github.com/ajroetker/go-highway/hwy"
+    "github.com/go-simd/highway/hwy"
 )
 
 //go:generate go tool goat ../c/transpose_sme_arm64.c -O3 --target arm64 -e="-march=armv9-a+sme"
@@ -679,8 +679,8 @@ func TransposeSMEBF16(src, dst []hwy.BFloat16, m, k int) {
 package matmul
 
 import (
-    "github.com/ajroetker/go-highway/hwy"
-    "github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+    "github.com/go-simd/highway/hwy"
+    "github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 // Minimum size for SME (streaming mode has fixed overhead)
@@ -703,8 +703,8 @@ func init() {
 package matmul
 
 import (
-    "github.com/ajroetker/go-highway/hwy"
-    "github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+    "github.com/go-simd/highway/hwy"
+    "github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func init() {
@@ -784,8 +784,8 @@ package highway
 import (
     "unsafe"
 
-    "github.com/ajroetker/go-highway/hwy"
-    "github.com/ajroetker/go-highway/hwy/contrib/matmul"
+    "github.com/go-simd/highway/hwy"
+    "github.com/go-simd/highway/hwy/contrib/matmul"
     "github.com/gomlx/gomlx/backends/simplego"
     "github.com/gomlx/gomlx/pkg/core/dtypes"
     "github.com/gomlx/gomlx/pkg/core/dtypes/bfloat16"

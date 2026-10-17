@@ -23,8 +23,8 @@ import (
 	stdmath "math"
 	"sync"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 // Buffer pools for fused matmul+activation kernels (used by SME internal helpers).

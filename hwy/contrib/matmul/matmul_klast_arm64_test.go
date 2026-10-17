@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 // BenchmarkMatMulKLastNEON benchmarks NEON dot-product KLast matmul at various sizes.

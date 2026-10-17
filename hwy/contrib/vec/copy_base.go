@@ -16,7 +16,7 @@ package vec
 
 //go:generate go run ../../../cmd/hwygen -input copy_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch copy
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseCopy copies src into dst: dst[i] = src[i].
 //

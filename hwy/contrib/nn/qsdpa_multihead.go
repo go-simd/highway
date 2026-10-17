@@ -15,7 +15,7 @@
 package nn
 
 import (
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // MultiHeadQuantizedSDPA computes multi-head quantized scaled dot-product attention

@@ -37,16 +37,16 @@ import (
 // detection logic is verified even on hosts where the integration scan skips
 // (and without the "evexguard" build tag).
 func TestScanEVEX(t *testing.T) {
-	const mod = "github.com/ajroetker/go-highway"
+	const mod = "github.com/go-simd/highway"
 	const dump = `
-0000000000401000 <github.com/ajroetker/go-highway/hwy.Good_avx2_Int64>:
+0000000000401000 <github.com/go-simd/highway/hwy.Good_avx2_Int64>:
   401000: c5 fe 6f 04 24            	vmovdqu	(%rsp), %ymm0
   401005: 48 83 c4 62              	addq	$0x62, %rsp
-0000000000401100 <github.com/ajroetker/go-highway/hwy.Bad_avx2_Int64>:
+0000000000401100 <github.com/go-simd/highway/hwy.Bad_avx2_Int64>:
   401100: 62 f1 fd 28 6f 04 24      	vmovdqa64	(%rsp), %ymm0
-0000000000401180 <github.com/ajroetker/go-highway/hwy.genericHelper>:
+0000000000401180 <github.com/go-simd/highway/hwy.genericHelper>:
   401180: 62 f2 fd 28 40 c1        	vpmullq	%ymm1, %ymm0, %ymm0
-0000000000401200 <github.com/ajroetker/go-highway/hwy.Fine_avx512_Int64>:
+0000000000401200 <github.com/go-simd/highway/hwy.Fine_avx512_Int64>:
   401200: 62 f2 fd 28 40 c1        	vpmullq	%ymm1, %ymm0, %ymm0
 0000000000401300 <runtime.asyncPreempt.abi0>:
   401300: 62 f1 fd 48 6f 04 24      	vmovdqu64	(%rsp), %zmm0

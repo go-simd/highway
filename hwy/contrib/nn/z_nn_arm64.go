@@ -26,9 +26,9 @@ package nn
 import (
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul"
-	"github.com/ajroetker/go-highway/hwy/contrib/nn/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul"
+	"github.com/go-simd/highway/hwy/contrib/nn/asm"
 )
 
 // Minimum dimensions for SME SDPA acceleration.

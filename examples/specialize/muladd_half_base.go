@@ -14,7 +14,7 @@
 
 package specialize
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseMulAddHalf computes element-wise fused multiply-add for half-precision types.
 //

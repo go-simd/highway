@@ -15,7 +15,7 @@
 package image
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 //go:generate go run ../../../cmd/hwygen -input point_ops_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch pointops

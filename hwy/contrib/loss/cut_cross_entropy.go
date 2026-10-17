@@ -21,7 +21,7 @@ import (
 	stdmath "math"
 	"sync"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseCutCrossEntropy computes cross-entropy loss WITHOUT materializing the full logits matrix.

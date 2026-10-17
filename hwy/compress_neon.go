@@ -17,7 +17,7 @@
 
 package hwy
 
-import "github.com/ajroetker/go-highway/hwy/asm"
+import "github.com/go-simd/highway/hwy/asm"
 
 // BitsFromMask_NEON_Uint8x16 converts a NEON byte comparison result to a bitmask.
 // Each byte in the input is either 0xFF (true) or 0x00 (false).

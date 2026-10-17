@@ -20,9 +20,9 @@ import (
 	stdmath "math"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul"
-	"github.com/ajroetker/go-highway/hwy/contrib/nn/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul"
+	"github.com/go-simd/highway/hwy/contrib/nn/asm"
 )
 
 // transposeF32 transposes a [rows, cols] matrix to [cols, rows].

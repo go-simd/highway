@@ -14,7 +14,7 @@
 
 package image
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // ICT (Irreversible Color Transform) coefficients from ITU-T T.800 Table G.2.
 // These are the standard JPEG 2000 RGB to YCbCr conversion coefficients.

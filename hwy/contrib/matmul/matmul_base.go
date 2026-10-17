@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_base.go -dispatch matmul -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // matmulScalar is the pure Go scalar implementation.
 // C[i,j] = sum(A[i,p] * B[p,j]) for p in 0..K-1

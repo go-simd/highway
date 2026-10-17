@@ -17,7 +17,7 @@ func checkFallbackGeneration(t *testing.T, content string, expected, mistakes []
 	t.Helper()
 
 	if !strings.HasPrefix(content, "package ") {
-		content = "package checkfallbackgeneration\n\nimport \"github.com/ajroetker/go-highway/hwy\"\n\n" + content
+		content = "package checkfallbackgeneration\n\nimport \"github.com/go-simd/highway/hwy\"\n\n" + content
 	}
 
 	// Create a temporary directory for test
@@ -161,7 +161,7 @@ func TestNEONHalfPrecisionStoreSlice(t *testing.T) {
 	inputFile := filepath.Join(tmpDir, "halfprec_store.go")
 	content := `package testhalf
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseScale[T hwy.Floats](data []T, scale T) {
 	lanes := hwy.MaxLanes[T]()

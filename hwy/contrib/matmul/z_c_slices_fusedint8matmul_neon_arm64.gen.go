@@ -7,7 +7,7 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func fusedInt8MatMulAsmF32(input []float32, weights []int8, scales, bias, output []float32, M, K, N, groupSize int) {

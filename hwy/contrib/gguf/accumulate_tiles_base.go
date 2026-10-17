@@ -17,7 +17,7 @@ package gguf
 //go:generate go run ../../../cmd/hwygen -input accumulate_tiles_base.go -output . -targets neon:asm,fallback -dispatch accumulatetiles
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseAccumulateTilesUnsigned accumulates 4 tiles of int32 SMOPA output into

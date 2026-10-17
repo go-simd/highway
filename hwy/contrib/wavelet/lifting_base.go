@@ -15,7 +15,7 @@
 package wavelet
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 //go:generate go run ../../../cmd/hwygen -input lifting_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch lifting

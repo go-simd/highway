@@ -17,7 +17,7 @@
 package matmul
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // Minimum size for SIMD transpose (function call and SIMD overhead dominates below this)

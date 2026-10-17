@@ -52,7 +52,7 @@ package contrib
 
 import (
     "simd/archsimd"
-    "github.com/ajroetker/go-highway/hwy"
+    "github.com/go-simd/highway/hwy"
 )
 
 // ExpTransform applies exp(x) to each element with zero allocations.

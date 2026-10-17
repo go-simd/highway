@@ -7,7 +7,7 @@ package bitpack
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/bitpack/asm"
+	"github.com/go-simd/highway/hwy/contrib/bitpack/asm"
 )
 
 func deltaEncode32AsmU32(src []uint32, base uint32, dst []uint32) {

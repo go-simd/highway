@@ -19,7 +19,7 @@ package vec
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseNormalize normalizes a vector in-place to unit length (L2 norm = 1).

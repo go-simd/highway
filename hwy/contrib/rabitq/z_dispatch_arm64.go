@@ -17,8 +17,8 @@
 package rabitq
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/rabitq/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/rabitq/asm"
 )
 
 // smeThreshold is the minimum number of uint64 elements where SME outperforms NEON.

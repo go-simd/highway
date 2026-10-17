@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // skipF16BenchmarkOnLinuxARM64 skips F16 benchmarks on Linux ARM64 due to a

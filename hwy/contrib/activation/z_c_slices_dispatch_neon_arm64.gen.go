@@ -7,8 +7,8 @@ package activation
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/activation/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/activation/asm"
 )
 
 func eLUAsmF16(input, output []hwy.Float16, alpha hwy.Float16) {

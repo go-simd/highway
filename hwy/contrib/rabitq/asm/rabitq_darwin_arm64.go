@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BitProductSME computes the RaBitQ bit product using SME (Apple M4+).

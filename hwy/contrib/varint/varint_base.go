@@ -38,7 +38,7 @@
 //	loc, n := varint.Decode5Uvarint64(data)
 package varint
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseFindVarintEnds examines up to 32 bytes and returns a bitmask where
 // bit i is set if src[i] is the last byte of a varint (i.e., src[i] < 0x80).

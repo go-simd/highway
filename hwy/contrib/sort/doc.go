@@ -34,7 +34,7 @@
 //
 // # Example Usage
 //
-//	import "github.com/ajroetker/go-highway/hwy/contrib/sort"
+//	import "github.com/go-simd/highway/hwy/contrib/sort"
 //
 //	func ProcessData(data []float32) {
 //	    sort.Sort(data)  // In-place ascending sort

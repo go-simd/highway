@@ -17,7 +17,7 @@ package gguf
 //go:generate go run ../../../cmd/hwygen -input vecdot_kquant_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch ggufkqvecdot
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseVecDotQ4_KQ8_K computes the dot product between Q4_K weight blocks and

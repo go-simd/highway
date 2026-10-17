@@ -17,7 +17,7 @@ package nn
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 //go:generate go run ../../../cmd/hwygen -input layernorm_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch layernorm

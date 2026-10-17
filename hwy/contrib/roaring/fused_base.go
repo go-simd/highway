@@ -19,7 +19,7 @@ package roaring
 import (
 	"math/bits"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseAndPopcntSlice computes dst[i] = a[i] & b[i] and returns the total

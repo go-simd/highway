@@ -18,7 +18,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // testRNGInt8x8PerAxis returns a seeded random number generator for reproducible tests.

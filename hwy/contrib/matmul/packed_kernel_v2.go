@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input packed_kernel_v2.go -dispatch packed_kernel_v2 -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BasePackedMicroKernel4x2 computes a 4-row × 2-vector micro-tile for the V2 GEBP.
 //

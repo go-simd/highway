@@ -19,7 +19,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // fp16One is the little-endian encoding of fp16 1.0 (0x3C00).

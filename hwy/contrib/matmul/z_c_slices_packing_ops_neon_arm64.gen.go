@@ -7,8 +7,8 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func applyPackedOutputAsmF16(packedOutput, output []hwy.Float16, alpha, beta hwy.Float16, packedStride, outputRowOffset, outputColOffset, outputStride, height, width int) {

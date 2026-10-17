@@ -19,7 +19,7 @@
 package vec
 
 import (
-	"github.com/ajroetker/go-highway/hwy/contrib/vec/asm"
+	"github.com/go-simd/highway/hwy/contrib/vec/asm"
 )
 
 // GoATEncodeFloat32s_neon encodes a float32 slice to bytes using GoAT NEON assembly.

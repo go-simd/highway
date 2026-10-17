@@ -14,7 +14,7 @@
 
 package algo
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // Fill sets all elements in dst to the specified value.
 // Uses an efficient doubling pattern that leverages Go's optimized memmove.

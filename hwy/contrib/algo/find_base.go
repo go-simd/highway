@@ -14,7 +14,7 @@
 
 package algo
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //go:generate go run ../../../cmd/hwygen -input find_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch find
 

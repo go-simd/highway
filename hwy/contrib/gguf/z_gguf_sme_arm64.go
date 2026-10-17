@@ -16,7 +16,7 @@
 
 package gguf
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func init() {
 	if hwy.NoSimdEnv() {

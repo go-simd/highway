@@ -17,7 +17,7 @@ package nn
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // LayerNormScalar is a scalar reference implementation for comparison and testing.

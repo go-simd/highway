@@ -7,7 +7,7 @@ package matmul
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
 )
 
 func int8x8MatMulAsmS32(output []int32, a, b []uint8, aZP, bZP uint8, M, K, N int) {

@@ -7,8 +7,8 @@ package vec
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/vec/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/vec/asm"
 )
 
 func addAsmF16(dst, s []hwy.Float16) {

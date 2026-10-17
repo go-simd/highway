@@ -15,8 +15,8 @@
 package nn
 
 import (
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // SDPAAuto computes single-head scaled dot-product attention using the best

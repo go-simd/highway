@@ -1,4 +1,4 @@
-module github.com/ajroetker/go-highway/hwy/goat
+module github.com/go-simd/highway/hwy/goat
 
 go 1.26
 

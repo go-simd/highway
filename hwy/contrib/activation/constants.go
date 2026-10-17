@@ -14,7 +14,7 @@
 
 package activation
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // =============================================================================
 // Per-type constants for activation functions

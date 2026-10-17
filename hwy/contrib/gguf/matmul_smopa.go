@@ -20,10 +20,10 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	ggufAsm "github.com/ajroetker/go-highway/hwy/contrib/gguf/asm"
-	"github.com/ajroetker/go-highway/hwy/contrib/matmul/asm"
-	"github.com/ajroetker/go-highway/hwy/contrib/workerpool"
+	"github.com/go-simd/highway/hwy"
+	ggufAsm "github.com/go-simd/highway/hwy/contrib/gguf/asm"
+	"github.com/go-simd/highway/hwy/contrib/matmul/asm"
+	"github.com/go-simd/highway/hwy/contrib/workerpool"
 )
 
 // Buffer pools for SMOPA matmul to reduce allocations.

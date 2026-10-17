@@ -7,8 +7,8 @@ package image
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/image/asm"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/image/asm"
 )
 
 func forwardICTAsmF16(r *Image[hwy.Float16], g *Image[hwy.Float16], b *Image[hwy.Float16], outY *Image[hwy.Float16], outCb *Image[hwy.Float16], outCr *Image[hwy.Float16]) {

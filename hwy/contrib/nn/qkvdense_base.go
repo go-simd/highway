@@ -14,7 +14,7 @@
 
 package nn
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 //go:generate go run ../../../cmd/hwygen -input qkvdense_base.go -output . -targets avx2,avx512,neon:asm,fallback -dispatch qkvdense
 

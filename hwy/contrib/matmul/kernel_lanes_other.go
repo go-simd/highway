@@ -16,7 +16,7 @@
 
 package matmul
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // getKernelLanesFloat32 returns the lanes used by the float32 kernel implementation.
 // On AMD64 and other platforms, the kernel lanes match the detected SIMD width.

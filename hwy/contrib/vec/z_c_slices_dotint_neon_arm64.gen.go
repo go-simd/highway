@@ -7,7 +7,7 @@ package vec
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/vec/asm"
+	"github.com/go-simd/highway/hwy/contrib/vec/asm"
 )
 
 func dotIntAsmS8(a, b []int8) int32 {

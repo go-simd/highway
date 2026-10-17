@@ -28,9 +28,9 @@ package softmax
 import (
 	stdmath "math"
 
-	"github.com/ajroetker/go-highway/hwy"
-	"github.com/ajroetker/go-highway/hwy/contrib/algo"
-	"github.com/ajroetker/go-highway/hwy/contrib/math"
+	"github.com/go-simd/highway/hwy"
+	"github.com/go-simd/highway/hwy/contrib/algo"
+	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
 // BaseSoftmax computes the softmax function over the input slice.

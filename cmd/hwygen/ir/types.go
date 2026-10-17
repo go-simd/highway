@@ -312,7 +312,7 @@ type IRFunction struct {
 	// Package is the containing package name.
 	Package string
 
-	// ImportPath is the full import path (e.g., "github.com/ajroetker/go-highway/hwy/contrib/nn").
+	// ImportPath is the full import path (e.g., "github.com/go-simd/highway/hwy/contrib/nn").
 	ImportPath string
 
 	// NextID is used to allocate unique node IDs.

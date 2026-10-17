@@ -19,7 +19,7 @@ package algo
 import (
 	"os"
 
-	"github.com/ajroetker/go-highway/hwy/asm"
+	"github.com/go-simd/highway/hwy/asm"
 )
 
 // This file provides fused Find/Count implementations for ARM64 that process

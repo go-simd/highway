@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input packed_kernel.go -dispatch package_kernel -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BasePackedMicroKernel computes C[ir:ir+Mr, jr:jr+Nr] += packedA * packedB
 // where packedA and packedB are in the packed layout from BasePackLHS/BasePackRHS.

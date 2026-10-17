@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input packing_ops.go -dispatch packing_ops -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BaseApplyPackedOutput applies the computed packed output to the final output matrix.
 //

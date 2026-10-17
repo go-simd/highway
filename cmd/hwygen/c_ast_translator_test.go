@@ -220,7 +220,7 @@ func TestScanPackageFuncs(t *testing.T) {
 	mainFile := filepath.Join(dir, "normalize_base.go")
 	err := os.WriteFile(mainFile, []byte(`package vec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseNormalize(dst []float32) {
 	_ = hwy.Load(dst)
@@ -233,7 +233,7 @@ func BaseNormalize(dst []float32) {
 	// Sibling file — defines BaseDot
 	err = os.WriteFile(filepath.Join(dir, "dot_base.go"), []byte(`package vec
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func BaseDot[T hwy.Floats](a, b []T) T {
 	v := hwy.Load(a)
@@ -278,7 +278,7 @@ func TestScanPackageFuncs_NoOverwrite(t *testing.T) {
 	mainFile := filepath.Join(dir, "a_base.go")
 	err := os.WriteFile(mainFile, []byte(`package p
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func SharedFunc(x []float32) {
 	_ = hwy.Load(x)

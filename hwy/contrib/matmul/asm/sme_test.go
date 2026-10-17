@@ -21,7 +21,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // transposeMatrix transposes M×K matrix A into K×M matrix AT

@@ -15,7 +15,7 @@ Write SIMD code once, run it on AVX2, AVX-512, ARM NEON, or pure Go fallback.
 ## Installation
 
 ```bash
-go get github.com/ajroetker/go-highway
+go get github.com/go-simd/highway
 ```
 
 ## Quick Start
@@ -25,8 +25,8 @@ package main
 
 import (
     "fmt"
-    "github.com/ajroetker/go-highway/hwy"
-    "github.com/ajroetker/go-highway/hwy/contrib/algo"
+    "github.com/go-simd/highway/hwy"
+    "github.com/go-simd/highway/hwy/contrib/algo"
 )
 
 func main() {

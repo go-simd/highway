@@ -19,7 +19,7 @@ package vec
 import (
 	"math"
 
-	"github.com/ajroetker/go-highway/hwy"
+	"github.com/go-simd/highway/hwy"
 )
 
 // BaseSquaredNorm computes the squared L2 norm (sum of squares) of a vector

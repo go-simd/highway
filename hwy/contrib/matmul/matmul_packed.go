@@ -16,7 +16,7 @@ package matmul
 
 //go:generate go run ../../../cmd/hwygen -input matmul_packed.go -dispatch packedmatmul -output . -targets avx2,avx512,neon:asm,fallback
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 // BasePackedMatMul computes C = A * B using the GotoBLAS-style 5-loop algorithm
 // with matrix packing for optimal cache utilization.

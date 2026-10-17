@@ -181,7 +181,7 @@ func extractQ4KSubBlock(block []uint8, j int, dst []int8) {
 
 package gguf
 
-import "github.com/ajroetker/go-highway/hwy"
+import "github.com/go-simd/highway/hwy"
 
 func init() {
     if hwy.NoSimdEnv() { return }

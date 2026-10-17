@@ -20,7 +20,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/varint/asm"
+	"github.com/go-simd/highway/hwy/contrib/varint/asm"
 )
 
 // ARM64 optimized varint operations.

@@ -7,7 +7,7 @@ package roaring
 import (
 	"unsafe"
 
-	"github.com/ajroetker/go-highway/hwy/contrib/roaring/asm"
+	"github.com/go-simd/highway/hwy/contrib/roaring/asm"
 )
 
 func andNotSliceAsmU64(dst, a, b []uint64) {
