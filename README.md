@@ -1,6 +1,17 @@
-# go-highway
+# go-highway (go-simd fork)
 
-[![Go](https://github.com/ajroetker/go-highway/actions/workflows/go.yml/badge.svg)](https://github.com/ajroetker/go-highway/actions/workflows/go.yml)
+[![Go](https://github.com/go-simd/highway/actions/workflows/go.yml/badge.svg)](https://github.com/go-simd/highway/actions/workflows/go.yml)
+
+> **This is a fork of [ajroetker/go-highway](https://github.com/ajroetker/go-highway)**
+> under the module path `github.com/go-simd/highway`, made for one reason:
+> go-highway v0.0.12 requires its `hwy/goat` tool at `v0.0.0`, a version that
+> exists nowhere, so `go list -m all`, `go mod download all` and `gorelease` fail
+> for every module that depends on it
+> ([#73](https://github.com/ajroetker/go-highway/issues/73)). The fix is
+> upstream as [#74](https://github.com/ajroetker/go-highway/pull/74); this fork
+> carries it under a path its consumers can resolve, and will be retired once
+> upstream releases it. What changed is listed in [NOTICE](NOTICE). All credit
+> for the library belongs to its authors.
 
 A portable SIMD abstraction library for Go, inspired by Google's [Highway](https://github.com/google/highway) C++ library.
 
