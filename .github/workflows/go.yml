@@ -21,12 +21,43 @@ on:
     branches: [main]
 
 jobs:
+  # Big-endian (s390x) and ppc64le are first-class targets: every package and
+  # every test binary must at least vet and link there. The test binaries are
+  # "run" with /bin/true, which compiles and links each one without executing.
+  cross-s390x:
+    name: Cross-compile (linux/s390x)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26"
+      - name: Vet
+        run: GOOS=linux GOARCH=s390x go vet ./...
+      - name: Link every test binary
+        run: GOOS=linux GOARCH=s390x go test -count=1 -run '^$' -exec /bin/true ./...
+
+  cross-ppc64le:
+    name: Cross-compile (linux/ppc64le)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26"
+      - name: Vet
+        run: GOOS=linux GOARCH=ppc64le go vet ./...
+      - name: Link every test binary
+        run: GOOS=linux GOARCH=ppc64le go test -count=1 -run '^$' -exec /bin/true ./...
+
   test:
     name: Test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
+    env:
+      GOEXPERIMENT: simd
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -35,9 +66,6 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: "1.26"
-
-      - name: Set GOEXPERIMENT
-        run: echo "GOEXPERIMENT=simd" >> $GITHUB_ENV
 
       - name: Verify Go version
         run: go version

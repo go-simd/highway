@@ -136,8 +136,10 @@ jobs:
         run: |
           mkdir -p /tmp/cross-bin/riscv64
           ln -sf /usr/bin/riscv64-linux-gnu-objdump /tmp/cross-bin/riscv64/objdump
-          PATH="/tmp/cross-bin/riscv64:$PATH" bin/goat hwy/goat/tests/src/universal.c -o hwy/goat/tests -t riscv64 --target-os linux -march=rv64imafd
-          cd hwy/goat/tests && GOARCH=riscv64 GOOS=linux go build .
+          mkdir -p /tmp/crossout-rv64
+          (cd /tmp/crossout-rv64 && go mod init crossout)
+          PATH="/tmp/cross-bin/riscv64:$PATH" bin/goat hwy/goat/tests/src/universal.c -o /tmp/crossout-rv64 -t riscv64 --target-os linux -march=rv64imafd
+          cd /tmp/crossout-rv64 && GOARCH=riscv64 GOOS=linux go build .
 
   riscv:
     name: ubuntu-24.04-riscv
