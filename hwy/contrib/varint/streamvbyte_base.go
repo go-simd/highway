@@ -306,6 +306,7 @@ func BaseEncodeStreamVByte32Group(values []uint32, dst []uint8) (ctrl byte, n in
 	// The shuffle below reads the in-memory bytes, which are little-endian
 	// wire bytes only on little-endian hosts.
 	if hostBigEndian {
+		bePathCalls.Add(1)
 		return encodeGroupScalarInto(values, dst)
 	}
 

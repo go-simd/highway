@@ -5,6 +5,41 @@ import (
 	"testing"
 )
 
+// The group encoder takes the explicit path exactly when the host is
+// big-endian; forcing hostBigEndian drives it on a little-endian host, and the
+// bytes must be the same either way.
+func TestStreamVByte32EndianPathSelection(t *testing.T) {
+	real := hostBigEndian
+	defer func() { hostBigEndian = real }()
+	values := []uint32{0x01020304, 0x0506, 0x07, 0x080910}
+	run := func(fn func([]uint32, []byte) (byte, int)) (byte, int, []byte) {
+		dst := make([]byte, 16)
+		c, n := fn(values, dst)
+		return c, n, dst[:n]
+	}
+	for name, fn := range map[string]func([]uint32, []byte) (byte, int){
+		"Base": BaseEncodeStreamVByte32Group, "fallback": BaseEncodeStreamVByte32Group_fallback,
+	} {
+		hostBigEndian = true
+		before := bePathCalls.Load()
+		c1, n1, d1 := run(fn)
+		if bePathCalls.Load() != before+1 {
+			t.Errorf("%s: big-endian host did not take the explicit path", name)
+		}
+		if !real {
+			hostBigEndian = false
+			before = bePathCalls.Load()
+			c2, n2, d2 := run(fn)
+			if bePathCalls.Load() != before {
+				t.Errorf("%s: little-endian host took the explicit path", name)
+			}
+			if c1 != c2 || n1 != n2 || !bytes.Equal(d1, d2) {
+				t.Errorf("%s: paths disagree: %x %v vs %x %v", name, c1, d1, c2, d2)
+			}
+		}
+	}
+}
+
 // Golden vector from the Stream-VByte format: values are stored as
 // little-endian, minimal-length byte runs. ctrl bits: v0 4B, v1 2B, v2 1B, v3 3B.
 func TestStreamVByte32GroupGoldenBytes(t *testing.T) {

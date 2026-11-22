@@ -91,6 +91,7 @@ func BaseEncodeStreamVByte32Group_fallback(values []uint32, dst []uint8) (ctrl b
 	}
 	n = int(streamVByte32DataLen[ctrl])
 	if hostBigEndian {
+		bePathCalls.Add(1)
 		return encodeGroupScalarInto(values, dst)
 	}
 	inputBytes := unsafe.Slice((*uint8)(unsafe.Pointer(&values[0])), 16)

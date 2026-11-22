@@ -6,6 +6,42 @@ import (
 	"testing"
 )
 
+// The Base* functions take the explicit little-endian path exactly when the host
+// is big-endian. Forcing hostBigEndian drives that path on a little-endian host.
+func TestEndianPathSelection(t *testing.T) {
+	real := hostBigEndian
+	defer func() { hostBigEndian = real }()
+	f32 := []float32{1, 2, 3}
+	f64 := []float64{1, 2}
+	b := make([]byte, 24)
+	calls := map[string]func(){
+		"EncodeFloat32s":    func() { BaseEncodeFloat32s(b, f32) },
+		"DecodeFloat32s":    func() { BaseDecodeFloat32s(make([]float32, 3), b) },
+		"EncodeFloat64s":    func() { BaseEncodeFloat64s(b, f64) },
+		"DecodeFloat64s":    func() { BaseDecodeFloat64s(make([]float64, 2), b) },
+		"fb EncodeFloat32s": func() { BaseEncodeFloat32s_fallback(b, f32) },
+		"fb DecodeFloat32s": func() { BaseDecodeFloat32s_fallback(make([]float32, 3), b) },
+		"fb EncodeFloat64s": func() { BaseEncodeFloat64s_fallback(b, f64) },
+		"fb DecodeFloat64s": func() { BaseDecodeFloat64s_fallback(make([]float64, 2), b) },
+	}
+	for name, fn := range calls {
+		hostBigEndian = true
+		before := bePathCalls.Load()
+		fn()
+		if bePathCalls.Load() != before+1 {
+			t.Errorf("%s: big-endian host did not take the explicit path", name)
+		}
+		if !real { // on a real big-endian host the unsafe path would be wrong
+			hostBigEndian = false
+			before = bePathCalls.Load()
+			fn()
+			if bePathCalls.Load() != before {
+				t.Errorf("%s: little-endian host took the explicit path", name)
+			}
+		}
+	}
+}
+
 // Byte-level golden vectors: the wire format is IEEE-754 little-endian.
 func TestFloatEncodingGoldenBytes(t *testing.T) {
 	f32 := []float32{1, -2, math.Float32frombits(0x01020304)}
