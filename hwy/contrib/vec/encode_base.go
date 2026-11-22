@@ -38,6 +38,11 @@ func BaseEncodeFloat32s(dst []byte, src []float32) {
 		panic("dst is too short")
 	}
 
+	if hostBigEndian {
+		encodeFloat32sLE(dst, src)
+		return
+	}
+
 	// Reinterpret float32 slice as bytes (zero-cost on little-endian)
 	srcBytes := unsafe.Slice((*byte)(unsafe.Pointer(&src[0])), totalBytes)
 
@@ -74,6 +79,11 @@ func BaseDecodeFloat32s(dst []float32, src []byte) {
 		panic("src is too short")
 	}
 
+	if hostBigEndian {
+		decodeFloat32sLE(dst, src)
+		return
+	}
+
 	// Reinterpret float32 slice as bytes (zero-cost on little-endian)
 	dstBytes := unsafe.Slice((*byte)(unsafe.Pointer(&dst[0])), totalBytes)
 
@@ -107,6 +117,11 @@ func BaseEncodeFloat64s(dst []byte, src []float64) {
 		panic("dst is too short")
 	}
 
+	if hostBigEndian {
+		encodeFloat64sLE(dst, src)
+		return
+	}
+
 	// Reinterpret float64 slice as bytes (zero-cost on little-endian)
 	srcBytes := unsafe.Slice((*byte)(unsafe.Pointer(&src[0])), totalBytes)
 
@@ -137,6 +152,11 @@ func BaseDecodeFloat64s(dst []float64, src []byte) {
 	totalBytes := len(dst) * 8
 	if len(src) < totalBytes {
 		panic("src is too short")
+	}
+
+	if hostBigEndian {
+		decodeFloat64sLE(dst, src)
+		return
 	}
 
 	// Reinterpret float64 slice as bytes (zero-cost on little-endian)
