@@ -65,7 +65,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.26"
+          go-version: "1.27.4"
 
       - name: Verify Go version
         run: go version
@@ -76,9 +76,9 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          key: ${{ matrix.os }}-go-1.26-${{ hashFiles('**/go.sum') }}
+          key: ${{ matrix.os }}-go-1.27-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ matrix.os }}-go-1.26-
+            ${{ matrix.os }}-go-1.27-
 
       - name: Install cross-compilation tools
         run: |

@@ -158,13 +158,13 @@ func BaseGELU_avx2(input []float32, output []float32) {
 	for ; ii+16 <= size; ii += 16 {
 		remaining := size - ii
 		if remaining >= 8 {
-			x := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vInvSqrt2)
 			erfX := math.BaseErfVec_avx2(xScaled)
 			onePlusErf := vOne.Add(erfX)
 			halfOnePlusErf := vHalf.Mul(onePlusErf)
 			result := x.Mul(halfOnePlusErf)
-			result.Store((*[8]float32)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -173,13 +173,13 @@ func BaseGELU_avx2(input []float32, output []float32) {
 		}
 		remaining1 := size - ii
 		if remaining1 >= 8 {
-			x1 := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii+8])))
+			x1 := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii+8])))
 			xScaled1 := x1.Mul(vInvSqrt2)
 			erfX1 := math.BaseErfVec_avx2(xScaled1)
 			onePlusErf1 := vOne.Add(erfX1)
 			halfOnePlusErf1 := vHalf.Mul(onePlusErf1)
 			result1 := x1.Mul(halfOnePlusErf1)
-			result1.Store((*[8]float32)(unsafe.Pointer(&output[ii+8])))
+			result1.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii+8])))
 		} else {
 			for i1 := ii; i1 < size; i1++ {
 				x1 := float64(input[i1])
@@ -190,13 +190,13 @@ func BaseGELU_avx2(input []float32, output []float32) {
 	for ; ii+8 <= size; ii += 8 {
 		remaining := size - ii
 		if remaining >= 8 {
-			x := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vInvSqrt2)
 			erfX := math.BaseErfVec_avx2(xScaled)
 			onePlusErf := vOne.Add(erfX)
 			halfOnePlusErf := vHalf.Mul(onePlusErf)
 			result := x.Mul(halfOnePlusErf)
-			result.Store((*[8]float32)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -218,13 +218,13 @@ func BaseGELU_avx2_Float64(input []float64, output []float64) {
 	for ; ii+8 <= size; ii += 8 {
 		remaining := size - ii
 		if remaining >= 4 {
-			x := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vInvSqrt2)
 			erfX := math.BaseErfVec_avx2_Float64(xScaled)
 			onePlusErf := vOne.Add(erfX)
 			halfOnePlusErf := vHalf.Mul(onePlusErf)
 			result := x.Mul(halfOnePlusErf)
-			result.Store((*[4]float64)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -233,13 +233,13 @@ func BaseGELU_avx2_Float64(input []float64, output []float64) {
 		}
 		remaining1 := size - ii
 		if remaining1 >= 4 {
-			x1 := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii+4])))
+			x1 := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii+4])))
 			xScaled1 := x1.Mul(vInvSqrt2)
 			erfX1 := math.BaseErfVec_avx2_Float64(xScaled1)
 			onePlusErf1 := vOne.Add(erfX1)
 			halfOnePlusErf1 := vHalf.Mul(onePlusErf1)
 			result1 := x1.Mul(halfOnePlusErf1)
-			result1.Store((*[4]float64)(unsafe.Pointer(&output[ii+4])))
+			result1.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii+4])))
 		} else {
 			for i1 := ii; i1 < size; i1++ {
 				x1 := float64(input[i1])
@@ -250,13 +250,13 @@ func BaseGELU_avx2_Float64(input []float64, output []float64) {
 	for ; ii+4 <= size; ii += 4 {
 		remaining := size - ii
 		if remaining >= 4 {
-			x := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vInvSqrt2)
 			erfX := math.BaseErfVec_avx2_Float64(xScaled)
 			onePlusErf := vOne.Add(erfX)
 			halfOnePlusErf := vHalf.Mul(onePlusErf)
 			result := x.Mul(halfOnePlusErf)
-			result.Store((*[4]float64)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -386,11 +386,11 @@ func BaseGELUApprox_avx2(input []float32, output []float32) {
 	for ; ii+16 <= size; ii += 16 {
 		remaining := size - ii
 		if remaining >= 8 {
-			x := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vCoeff)
 			sigmoidX := math.BaseSigmoidVec_avx2(xScaled)
 			result := x.Mul(sigmoidX)
-			result.Store((*[8]float32)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -400,11 +400,11 @@ func BaseGELUApprox_avx2(input []float32, output []float32) {
 		}
 		remaining1 := size - ii
 		if remaining1 >= 8 {
-			x1 := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii+8])))
+			x1 := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii+8])))
 			xScaled1 := x1.Mul(vCoeff)
 			sigmoidX1 := math.BaseSigmoidVec_avx2(xScaled1)
 			result1 := x1.Mul(sigmoidX1)
-			result1.Store((*[8]float32)(unsafe.Pointer(&output[ii+8])))
+			result1.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii+8])))
 		} else {
 			for i1 := ii; i1 < size; i1++ {
 				x1 := float64(input[i1])
@@ -416,11 +416,11 @@ func BaseGELUApprox_avx2(input []float32, output []float32) {
 	for ; ii+8 <= size; ii += 8 {
 		remaining := size - ii
 		if remaining >= 8 {
-			x := archsimd.LoadFloat32x8((*[8]float32)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat32x8Array((*[8]float32)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vCoeff)
 			sigmoidX := math.BaseSigmoidVec_avx2(xScaled)
 			result := x.Mul(sigmoidX)
-			result.Store((*[8]float32)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[8]float32)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -441,11 +441,11 @@ func BaseGELUApprox_avx2_Float64(input []float64, output []float64) {
 	for ; ii+8 <= size; ii += 8 {
 		remaining := size - ii
 		if remaining >= 4 {
-			x := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vCoeff)
 			sigmoidX := math.BaseSigmoidVec_avx2_Float64(xScaled)
 			result := x.Mul(sigmoidX)
-			result.Store((*[4]float64)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
@@ -455,11 +455,11 @@ func BaseGELUApprox_avx2_Float64(input []float64, output []float64) {
 		}
 		remaining1 := size - ii
 		if remaining1 >= 4 {
-			x1 := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii+4])))
+			x1 := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii+4])))
 			xScaled1 := x1.Mul(vCoeff)
 			sigmoidX1 := math.BaseSigmoidVec_avx2_Float64(xScaled1)
 			result1 := x1.Mul(sigmoidX1)
-			result1.Store((*[4]float64)(unsafe.Pointer(&output[ii+4])))
+			result1.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii+4])))
 		} else {
 			for i1 := ii; i1 < size; i1++ {
 				x1 := float64(input[i1])
@@ -471,11 +471,11 @@ func BaseGELUApprox_avx2_Float64(input []float64, output []float64) {
 	for ; ii+4 <= size; ii += 4 {
 		remaining := size - ii
 		if remaining >= 4 {
-			x := archsimd.LoadFloat64x4((*[4]float64)(unsafe.Pointer(&input[ii])))
+			x := archsimd.LoadFloat64x4Array((*[4]float64)(unsafe.Pointer(&input[ii])))
 			xScaled := x.Mul(vCoeff)
 			sigmoidX := math.BaseSigmoidVec_avx2_Float64(xScaled)
 			result := x.Mul(sigmoidX)
-			result.Store((*[4]float64)(unsafe.Pointer(&output[ii])))
+			result.StoreArray((*[4]float64)(unsafe.Pointer(&output[ii])))
 		} else {
 			for i := ii; i < size; i++ {
 				x := float64(input[i])
