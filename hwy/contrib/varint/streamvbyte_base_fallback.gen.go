@@ -90,6 +90,10 @@ func BaseEncodeStreamVByte32Group_fallback(values []uint32, dst []uint8) (ctrl b
 		ctrl |= byte(length-1) << (i * 2)
 	}
 	n = int(streamVByte32DataLen[ctrl])
+	if hostBigEndian {
+		bePathCalls.Add(1)
+		return encodeGroupScalarInto(values, dst)
+	}
 	inputBytes := unsafe.Slice((*uint8)(unsafe.Pointer(&values[0])), 16)
 	inputVec := hwy.LoadSlice[uint8](inputBytes[:16])
 	maskVec := hwy.LoadSlice[uint8](streamVByte32EncodeShuffleMasks[ctrl][:16])

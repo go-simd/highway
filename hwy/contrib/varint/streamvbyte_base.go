@@ -303,8 +303,14 @@ func BaseEncodeStreamVByte32Group(values []uint32, dst []uint8) (ctrl byte, n in
 	// Get total data length
 	n = int(streamVByte32DataLen[ctrl])
 
-	// Reinterpret uint32 slice as bytes using unsafe
-	// This is safe because both ARM64 and x86-64 are little-endian
+	// The shuffle below reads the in-memory bytes, which are little-endian
+	// wire bytes only on little-endian hosts.
+	if hostBigEndian {
+		bePathCalls.Add(1)
+		return encodeGroupScalarInto(values, dst)
+	}
+
+	// Reinterpret uint32 slice as bytes using unsafe (little-endian host)
 	inputBytes := unsafe.Slice((*uint8)(unsafe.Pointer(&values[0])), 16)
 
 	// Use SIMD shuffle to compact bytes directly into dst
