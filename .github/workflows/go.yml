@@ -154,15 +154,18 @@ jobs:
       - name: Build examples
         run: |
           go build -o examples/basic/basic ./examples/basic
-          go build -o examples/contrib_test/contrib_test ./examples/contrib_test
           go build -o examples/softmax/softmax_test ./examples/softmax
           go build -o examples/gelu/gelu_test ./examples/gelu
 
       - name: Run basic example
         run: ./examples/basic/basic
 
-      - name: Run contrib_test example
-        run: ./examples/contrib_test/contrib_test
+      # On amd64 this example is an archsimd program: it needs go1.27.
+      - name: Build and run contrib_test example
+        if: startsWith(matrix.go, '1.27') || runner.arch == 'ARM64'
+        run: |
+          go build -o examples/contrib_test/contrib_test ./examples/contrib_test
+          ./examples/contrib_test/contrib_test
 
       - name: Test softmax example
         run: go test -v ./examples/softmax/...
