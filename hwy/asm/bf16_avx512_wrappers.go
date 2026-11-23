@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build amd64 && goexperiment.simd && go1.27
+//go:build amd64 && goexperiment.simd
 
 // BFloat16 SIMD operations for x86-64 with AVX-512 BF16 extension.
 // Requires: Intel Cooper Lake (2020+), AMD Zen4+

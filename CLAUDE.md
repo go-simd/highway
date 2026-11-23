@@ -131,8 +131,8 @@ SVE targets (`sve_darwin`, `sve_linux`) are always assembly-only — they have n
 
 | Architecture | SIMD Width | Backend | Status |
 |--------------|------------|---------|--------|
-| AMD64 AVX2 | 256-bit | Go 1.27 `simd/archsimd` | Supported |
-| AMD64 AVX-512 | 512-bit | Go 1.27 `simd/archsimd` | Supported |
+| AMD64 AVX2 | 256-bit | `simd/archsimd` (Go 1.26 and 1.27) | Supported |
+| AMD64 AVX-512 | 512-bit | `simd/archsimd` (Go 1.26 and 1.27) | Supported |
 | ARM64 NEON | 128-bit | `hwy/asm` (GoAT assembly) | Supported |
 | ARM64 SVE (Darwin) | 512-bit (fixed) | `hwy/asm` (GoAT assembly) | Supported |
 | ARM64 SVE (Linux) | Scalable | `hwy/asm` (GoAT assembly) | Supported |

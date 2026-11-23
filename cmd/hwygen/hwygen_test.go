@@ -1003,14 +1003,22 @@ func BaseCopy[T hwy.FloatsNative](src, dst []T) {
 		t.Error("Generated code missing unsafe import")
 	}
 
-	// Verify archsimd.LoadFloat32x8 is called (not LoadFloat32x8Slice)
-	if !strings.Contains(contentStr, "archsimd.LoadFloat32x8(") {
-		t.Error("Generated code should use archsimd.LoadFloat32x8 (pointer-based), not LoadFloat32x8Slice")
+	// go1.27 spelling: pointer-based loads/stores are the *Array forms.
+	if !strings.Contains(contentStr, "archsimd.LoadFloat32x8Array(") {
+		t.Error("go1.27 code should use archsimd.LoadFloat32x8Array (pointer-based)")
+	}
+	if strings.Contains(contentStr, "StoreSlice") || strings.Contains(contentStr, "LoadFloat32x8Slice") {
+		t.Error("go1.27 code should not use the Slice-named forms")
 	}
 
-	// Verify v.Store is called with the cast (not StoreSlice)
-	if strings.Contains(contentStr, "StoreSlice") {
-		t.Error("Generated code should use v.Store (pointer-based), not StoreSlice")
+	// go1.26 twin keeps the original spelling.
+	old126, err := os.ReadFile(filepath.Join(tmpDir, "load_avx2_go126.gen.go"))
+	if err != nil {
+		t.Fatalf("Failed to read go1.26 AVX2 output: %v", err)
+	}
+	old := string(old126)
+	if !strings.Contains(old, "archsimd.LoadFloat32x8(") || strings.Contains(old, "StoreSlice") {
+		t.Error("go1.26 code should use archsimd.LoadFloat32x8 and v.Store (pointer-based)")
 	}
 
 	// Verify the slice-to-pointer optimization is applied:

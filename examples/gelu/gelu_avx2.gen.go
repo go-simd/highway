@@ -7,6 +7,7 @@ package gelu
 import (
 	stdmath "math"
 	"simd/archsimd"
+	"sync"
 	"unsafe"
 
 	"github.com/go-simd/highway/hwy"
@@ -14,19 +15,34 @@ import (
 	"github.com/go-simd/highway/hwy/contrib/math"
 )
 
-// Hoisted constants - pre-broadcasted at package init time
+// Hoisted constants - lazily initialized on first use to avoid init-time crashes
 var (
-	BaseGELUApprox_AVX2_vCoeff_f32 = archsimd.BroadcastFloat32x8(1.702)
-	BaseGELUApprox_AVX2_vCoeff_f64 = archsimd.BroadcastFloat64x4(1.702)
-	BaseGELU_AVX2_vHalf_f32        = archsimd.BroadcastFloat32x8(0.5)
-	BaseGELU_AVX2_vHalf_f64        = archsimd.BroadcastFloat64x4(0.5)
-	BaseGELU_AVX2_vInvSqrt2_f32    = archsimd.BroadcastFloat32x8(0.7071067811865476)
-	BaseGELU_AVX2_vInvSqrt2_f64    = archsimd.BroadcastFloat64x4(0.7071067811865476)
-	BaseGELU_AVX2_vOne_f32         = archsimd.BroadcastFloat32x8(1.0)
-	BaseGELU_AVX2_vOne_f64         = archsimd.BroadcastFloat64x4(1.0)
+	BaseGELUApprox_AVX2_vCoeff_f32 archsimd.Float32x8
+	BaseGELUApprox_AVX2_vCoeff_f64 archsimd.Float64x4
+	BaseGELU_AVX2_vHalf_f32        archsimd.Float32x8
+	BaseGELU_AVX2_vHalf_f64        archsimd.Float64x4
+	BaseGELU_AVX2_vInvSqrt2_f32    archsimd.Float32x8
+	BaseGELU_AVX2_vInvSqrt2_f64    archsimd.Float64x4
+	BaseGELU_AVX2_vOne_f32         archsimd.Float32x8
+	BaseGELU_AVX2_vOne_f64         archsimd.Float64x4
+	_geluAVX2HoistOnce             sync.Once
 )
 
+func _geluAVX2InitHoistedConstants() {
+	_geluAVX2HoistOnce.Do(func() {
+		BaseGELUApprox_AVX2_vCoeff_f32 = archsimd.BroadcastFloat32x8(1.702)
+		BaseGELUApprox_AVX2_vCoeff_f64 = archsimd.BroadcastFloat64x4(1.702)
+		BaseGELU_AVX2_vHalf_f32 = archsimd.BroadcastFloat32x8(0.5)
+		BaseGELU_AVX2_vHalf_f64 = archsimd.BroadcastFloat64x4(0.5)
+		BaseGELU_AVX2_vInvSqrt2_f32 = archsimd.BroadcastFloat32x8(0.7071067811865476)
+		BaseGELU_AVX2_vInvSqrt2_f64 = archsimd.BroadcastFloat64x4(0.7071067811865476)
+		BaseGELU_AVX2_vOne_f32 = archsimd.BroadcastFloat32x8(1.0)
+		BaseGELU_AVX2_vOne_f64 = archsimd.BroadcastFloat64x4(1.0)
+	})
+}
+
 func BaseGELU_avx2_Float16(input []hwy.Float16, output []hwy.Float16) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -87,6 +103,7 @@ func BaseGELU_avx2_Float16(input []hwy.Float16, output []hwy.Float16) {
 }
 
 func BaseGELU_avx2_BFloat16(input []hwy.BFloat16, output []hwy.BFloat16) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -147,6 +164,7 @@ func BaseGELU_avx2_BFloat16(input []hwy.BFloat16, output []hwy.BFloat16) {
 }
 
 func BaseGELU_avx2(input []float32, output []float32) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -207,6 +225,7 @@ func BaseGELU_avx2(input []float32, output []float32) {
 }
 
 func BaseGELU_avx2_Float64(input []float64, output []float64) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -267,6 +286,7 @@ func BaseGELU_avx2_Float64(input []float64, output []float64) {
 }
 
 func BaseGELUApprox_avx2_Float16(input []hwy.Float16, output []hwy.Float16) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -322,6 +342,7 @@ func BaseGELUApprox_avx2_Float16(input []hwy.Float16, output []hwy.Float16) {
 }
 
 func BaseGELUApprox_avx2_BFloat16(input []hwy.BFloat16, output []hwy.BFloat16) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -377,6 +398,7 @@ func BaseGELUApprox_avx2_BFloat16(input []hwy.BFloat16, output []hwy.BFloat16) {
 }
 
 func BaseGELUApprox_avx2(input []float32, output []float32) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return
@@ -432,6 +454,7 @@ func BaseGELUApprox_avx2(input []float32, output []float32) {
 }
 
 func BaseGELUApprox_avx2_Float64(input []float64, output []float64) {
+	_geluAVX2InitHoistedConstants()
 	size := min(len(input), len(output))
 	if size == 0 {
 		return

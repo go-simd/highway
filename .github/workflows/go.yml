@@ -51,14 +51,15 @@ jobs:
         run: GOOS=linux GOARCH=ppc64le go test -count=1 -run '^$' -exec /bin/true ./...
 
   test:
-    # go1.26 compiles the portable paths only: the archsimd files carry
-    # `goexperiment.simd && go1.27`, since go1.27 renamed the archsimd API.
+    # go1.27 renamed the archsimd load/store/round API, so every archsimd file
+    # exists twice: `... && go1.27` (new names) and `_go126` `... && !go1.27`.
     name: Test (${{ matrix.os }}, go${{ matrix.go }})
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
-        go: ["1.26", "1.27.4"]
+        go: ["1.26.11", "1.27.4"]
     env:
       GOEXPERIMENT: simd
     steps:
@@ -151,6 +152,14 @@ jobs:
           cd examples/softmax && go generate ./...
           cd ../gelu && go generate ./...
 
+      # hwygen emits both archsimd spellings (go1.27 and the *_go126 twins);
+      # the committed files must be exactly what the generator produces.
+      - name: Golden check (generated examples match the tree)
+        run: |
+          git status --short examples
+          git diff --exit-code -- examples
+          test -z "$(git ls-files --others --exclude-standard examples)"
+
       - name: Build examples
         run: |
           go build -o examples/basic/basic ./examples/basic
@@ -160,9 +169,9 @@ jobs:
       - name: Run basic example
         run: ./examples/basic/basic
 
-      # On amd64 this example is an archsimd program: it needs go1.27.
+      # On amd64 this example is an archsimd program; main_go126.go carries
+      # the go1.26 spelling, so it builds on both toolchains.
       - name: Build and run contrib_test example
-        if: startsWith(matrix.go, '1.27') || runner.arch == 'ARM64'
         run: |
           go build -o examples/contrib_test/contrib_test ./examples/contrib_test
           ./examples/contrib_test/contrib_test
