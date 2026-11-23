@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build amd64 && goexperiment.simd
+//go:build amd64 && goexperiment.simd && go1.27
 
 // BFloat16x8AVX2 is a promoted storage wrapper: BFloat16 data is converted to float32
 // at Load boundaries and computed on as archsimd.Float32x8, then converted back at Store.

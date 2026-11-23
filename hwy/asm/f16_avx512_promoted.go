@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build amd64 && goexperiment.simd
+//go:build amd64 && goexperiment.simd && go1.27
 
 // Float16x16AVX512 is a promoted storage wrapper: Float16 data is converted to float32
 // at Load boundaries and computed on as archsimd.Float32x16, then converted back at Store.

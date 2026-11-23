@@ -15,7 +15,7 @@
 // Example demonstrating the refactored contrib package with AVX2 support.
 // This shows how hwygen-generated code can call contrib functions directly.
 
-//go:build amd64 && goexperiment.simd
+//go:build amd64 && goexperiment.simd && go1.27
 
 package main
 
