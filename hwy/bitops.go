@@ -14,7 +14,10 @@
 
 package hwy
 
-import "math/bits"
+import (
+	"math/bits"
+	"unsafe"
+)
 
 // This file provides bit manipulation operations for integer vectors.
 // These are pure Go (scalar) implementations that work with any integer type.
@@ -249,53 +252,14 @@ func HighestSetBitIndex[T Integers](v Vec[T]) Vec[T] {
 // Returns the maximum value of the type (all bits set) if the value is 0.
 // For signed types this is -1, for unsigned types this is the max value.
 func highestSetBitIndex[T Integers](val T) T {
-	switch v := any(val).(type) {
-	case int8:
-		uv := uint8(v)
-		if uv == 0 {
-			return any(int8(-1)).(T)
-		}
-		return any(int8(bits.Len8(uv) - 1)).(T)
-	case uint8:
-		if v == 0 {
-			return any(uint8(0xFF)).(T)
-		}
-		return any(uint8(bits.Len8(v) - 1)).(T)
-	case int16:
-		uv := uint16(v)
-		if uv == 0 {
-			return any(int16(-1)).(T)
-		}
-		return any(int16(bits.Len16(uv) - 1)).(T)
-	case uint16:
-		if v == 0 {
-			return any(uint16(0xFFFF)).(T)
-		}
-		return any(uint16(bits.Len16(v) - 1)).(T)
-	case int32:
-		uv := uint32(v)
-		if uv == 0 {
-			return any(int32(-1)).(T)
-		}
-		return any(int32(bits.Len32(uv) - 1)).(T)
-	case uint32:
-		if v == 0 {
-			return any(uint32(0xFFFFFFFF)).(T)
-		}
-		return any(uint32(bits.Len32(v) - 1)).(T)
-	case int64:
-		uv := uint64(v)
-		if uv == 0 {
-			return any(int64(-1)).(T)
-		}
-		return any(int64(bits.Len64(uv) - 1)).(T)
-	case uint64:
-		if v == 0 {
-			return any(uint64(0xFFFFFFFFFFFFFFFF)).(T)
-		}
-		return any(uint64(bits.Len64(v) - 1)).(T)
-	default:
-		var zero T
-		return zero
+	// A single arithmetic path instead of an eight-way type switch: the switch
+	// made the s390x compiler fail with "width not calculated: [2048]uint8"
+	// when instantiated from a test binary (see the go-simd-highway-ice notes).
+	// A zero lane gives bits.Len64(0)-1 == -1, which converts to -1 for signed
+	// types and to all-ones for unsigned ones, as documented above.
+	u := uint64(val)
+	if width := unsafe.Sizeof(val) * 8; width < 64 {
+		u &= (uint64(1) << width) - 1 // drop the sign extension of negative lanes
 	}
+	return T(bits.Len64(u) - 1)
 }
