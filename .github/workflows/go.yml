@@ -51,11 +51,15 @@ jobs:
         run: GOOS=linux GOARCH=ppc64le go test -count=1 -run '^$' -exec /bin/true ./...
 
   test:
-    name: Test (${{ matrix.os }})
+    # go1.27 renamed the archsimd load/store/round API, so every archsimd file
+    # exists twice: `... && go1.27` (new names) and `_go126` `... && !go1.27`.
+    name: Test (${{ matrix.os }}, go${{ matrix.go }})
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm]
+        go: ["1.26.11", "1.27.4"]
     env:
       GOEXPERIMENT: simd
     steps:
@@ -65,7 +69,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.26"
+          go-version: ${{ matrix.go }}
 
       - name: Verify Go version
         run: go version
@@ -76,9 +80,9 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          key: ${{ matrix.os }}-go-1.26-${{ hashFiles('**/go.sum') }}
+          key: ${{ matrix.os }}-go-${{ matrix.go }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ matrix.os }}-go-1.26-
+            ${{ matrix.os }}-go-${{ matrix.go }}-
 
       - name: Install cross-compilation tools
         run: |
@@ -101,6 +105,7 @@ jobs:
         run: go test -v -race ./...
 
       - name: EVEX guard (no AVX-512 ops in AVX2 functions)
+        if: startsWith(matrix.go, '1.27')
         run: |
           out=$(go test -v -tags evexguard -run TestNoEVEXInAVX2ReachableFunctions ./internal/evexguard/ 2>&1)
           echo "$out"
@@ -147,18 +152,29 @@ jobs:
           cd examples/softmax && go generate ./...
           cd ../gelu && go generate ./...
 
+      # hwygen emits both archsimd spellings (go1.27 and the *_go126 twins);
+      # the committed files must be exactly what the generator produces.
+      - name: Golden check (generated examples match the tree)
+        run: |
+          git status --short examples
+          git diff --exit-code -- examples
+          test -z "$(git ls-files --others --exclude-standard examples)"
+
       - name: Build examples
         run: |
           go build -o examples/basic/basic ./examples/basic
-          go build -o examples/contrib_test/contrib_test ./examples/contrib_test
           go build -o examples/softmax/softmax_test ./examples/softmax
           go build -o examples/gelu/gelu_test ./examples/gelu
 
       - name: Run basic example
         run: ./examples/basic/basic
 
-      - name: Run contrib_test example
-        run: ./examples/contrib_test/contrib_test
+      # On amd64 this example is an archsimd program; main_go126.go carries
+      # the go1.26 spelling, so it builds on both toolchains.
+      - name: Build and run contrib_test example
+        run: |
+          go build -o examples/contrib_test/contrib_test ./examples/contrib_test
+          ./examples/contrib_test/contrib_test
 
       - name: Test softmax example
         run: go test -v ./examples/softmax/...

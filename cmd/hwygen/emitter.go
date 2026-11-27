@@ -824,13 +824,41 @@ func emitFallbackOnlyDispatcher(funcs []ParsedFunc, pkgName, outPath, prefix, su
 // EmitTarget generates a target-specific implementation file.
 // sourceImports contains the imports from the original source file that should be preserved
 // if they're still used after transformation (e.g., "unsafe", "math/bits").
+//
+// An AVX target (simd/archsimd) is emitted twice, because go1.27 renamed the
+// archsimd loads and stores: baseName_avx2.gen.go carries the go1.27 spelling
+// under `&& go1.27`, and baseName_avx2_go126.gen.go carries the go1.26 spelling
+// under `&& !go1.27`, so a go1.26 toolchain keeps its amd64 SIMD paths.
 func EmitTarget(funcs []*ast.FuncDecl, target Target, pkgName, baseName, outPath string, contribPkgs ContribPackages, hoistedConsts []HoistedConst, sourceImports map[string]string) error {
+	// For AVX targets with hoisted constants, inject lazy init call at function start
+	for _, funcDecl := range funcs {
+		if (target.IsAVX2() || target.IsAVX512()) && len(hoistedConsts) > 0 && funcDecl.Body != nil {
+			injectHoistedConstInit(funcDecl, baseName, target)
+		}
+	}
+	if target.VecPackage != "archsimd" {
+		return emitTargetVariant(funcs, target, target.BuildTag, target.Suffix(), pkgName, baseName, outPath, contribPkgs, hoistedConsts, sourceImports)
+	}
+	// go1.26 spelling first (what the transformer builds), then rewrite the
+	// archsimd names in place for the go1.27 file.
+	if err := emitTargetVariant(funcs, target, archsimdPreGo127Tag(target.BuildTag), target.Suffix()+"_go126", pkgName, baseName, outPath, contribPkgs, hoistedConsts, sourceImports); err != nil {
+		return err
+	}
+	for _, funcDecl := range funcs {
+		rewriteArchsimdGo127(funcDecl)
+	}
+	return emitTargetVariant(funcs, target, archsimdGo127Tag(target.BuildTag), target.Suffix(), pkgName, baseName, outPath, contribPkgs, hoistedConsts, sourceImports)
+}
+
+// emitTargetVariant writes one file for a target under the given build tag and
+// file-name suffix.
+func emitTargetVariant(funcs []*ast.FuncDecl, target Target, buildTag, fileSuffix, pkgName, baseName, outPath string, contribPkgs ContribPackages, hoistedConsts []HoistedConst, sourceImports map[string]string) error {
 	var buf bytes.Buffer
 
 	// File header
 	fmt.Fprintf(&buf, HeaderNote)
-	if target.BuildTag != "" {
-		fmt.Fprintf(&buf, "//go:build %s\n", target.BuildTag)
+	if buildTag != "" {
+		fmt.Fprintf(&buf, "//go:build %s\n", buildTag)
 	}
 	fmt.Fprintf(&buf, "\npackage %s\n\n", pkgName)
 
@@ -884,10 +912,6 @@ func EmitTarget(funcs []*ast.FuncDecl, target Target, pkgName, baseName, outPath
 	// Print each function
 	fset := token.NewFileSet()
 	for _, funcDecl := range funcs {
-		// For AVX targets with hoisted constants, inject lazy init call at function start
-		if (target.IsAVX2() || target.IsAVX512()) && len(hoistedConsts) > 0 && funcDecl.Body != nil {
-			injectHoistedConstInit(funcDecl, baseName, target)
-		}
 		if err := printer.Fprint(&buf, fset, funcDecl); err != nil {
 			return fmt.Errorf("print function: %w", err)
 		}
@@ -895,7 +919,7 @@ func EmitTarget(funcs []*ast.FuncDecl, target Target, pkgName, baseName, outPath
 	}
 
 	// Determine output filename
-	filename := filepath.Join(outPath, baseName+target.Suffix()+".gen.go")
+	filename := filepath.Join(outPath, baseName+fileSuffix+".gen.go")
 
 	// Format the code and fix imports
 	formatted, err := formatAndFixImports(filename, buf.Bytes())

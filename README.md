@@ -19,7 +19,7 @@ Write SIMD code once, run it on AVX2, AVX-512, ARM NEON, or pure Go fallback.
 
 ## Requirements
 
-- Go 1.26+
+- Go 1.26+ (both the Go 1.26 and the Go 1.27 `simd/archsimd` APIs are supported; the build tag selects the matching generated spelling)
 - `GOEXPERIMENT=simd` for AMD64 hardware acceleration (uses native `simd/archsimd` package)
 - ARM64 uses `hwy/asm` with GoAT-generated assembly (no `GOEXPERIMENT` needed)
 
@@ -167,7 +167,7 @@ Each target supports a generation mode suffix:
 ./bin/hwygen -input matmul.go -output . -targets avx2,avx512,neon:asm,fallback
 ```
 
-AVX2 and AVX-512 targets use Go 1.26's native `simd/archsimd` package directly. ARM64 targets (NEON, SVE) use the `hwy/asm` package because `simd/archsimd` does not yet support these architectures. The `:asm` mode is available for any target but is primarily useful for ARM64 where bulk assembly avoids per-vector function call overhead.
+AVX2 and AVX-512 targets use Go's native `simd/archsimd` package directly (Go 1.26 and 1.27 spellings are both generated). ARM64 targets (NEON, SVE) use the `hwy/asm` package because `simd/archsimd` does not yet support these architectures. The `:asm` mode is available for any target but is primarily useful for ARM64 where bulk assembly avoids per-vector function call overhead.
 
 ### Generic Dispatch
 
@@ -281,15 +281,15 @@ GOEXPERIMENT=simd go test -bench=. -benchmem ./hwy/contrib/math/...
 
 | Architecture | SIMD Width | Backend | Status |
 |--------------|------------|---------|--------|
-| AMD64 AVX2 | 256-bit | Go 1.26 `simd/archsimd` | Supported |
-| AMD64 AVX-512 | 512-bit | Go 1.26 `simd/archsimd` | Supported |
+| AMD64 AVX2 | 256-bit | Go 1.26 and 1.27 `simd/archsimd` | Supported |
+| AMD64 AVX-512 | 512-bit | Go 1.26 and 1.27 `simd/archsimd` | Supported |
 | ARM64 NEON | 128-bit | `hwy/asm` (GoAT assembly) | Supported |
 | ARM64 SVE (Darwin) | 512-bit fixed | `hwy/asm` (GoAT assembly) | Supported |
 | ARM64 SVE (Linux) | Scalable | `hwy/asm` (GoAT assembly) | Supported |
 | ARM64 SME | Scalable | `hwy/asm` (GoAT assembly) | Supported (matrix ops) |
 | Pure Go | Scalar | — | Supported (fallback) |
 
-AMD64 targets use Go 1.26's native `simd/archsimd` package. ARM64 targets use the `hwy/asm` package with GoAT-generated assembly because `simd/archsimd` does not yet support NEON or SVE. SME (Scalable Matrix Extension) provides dedicated matrix multiplication hardware on Apple Silicon M4 and newer ARM processors.
+AMD64 targets use Go's native `simd/archsimd` package (Go 1.26 and 1.27). ARM64 targets use the `hwy/asm` package with GoAT-generated assembly because `simd/archsimd` does not yet support NEON or SVE. SME (Scalable Matrix Extension) provides dedicated matrix multiplication hardware on Apple Silicon M4 and newer ARM processors.
 
 ## License
 
